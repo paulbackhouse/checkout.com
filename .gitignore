@@ -3,3 +3,6 @@
 ################################################################################
 
 /Checkout.Application/bin/Debug/netcoreapp2.0
+/Checkout.Application/obj
+/Checkout.com/obj
+/.vs
