@@ -1,3 +1,4 @@
+using AutoMapper;
 using Checkout.Application;
 using Checkout.Web.App.Extensions;
 using Checkout.Web.App.Middleware;
@@ -29,6 +30,7 @@ namespace Checkout.Web
             services.AddMvc();
             services.AddApiVersioningAndDocs();
             services.AddMemoryCache();
+            services.AddAutoMapper(typeof(ApplicationMappingProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Checkout.Location
+namespace Checkout.Models
 {
-    public class CountryDto : BaseDto<short>
+    using Audit;
+
+    public class CountryEntity : BaseEntity<short>, IActiveState
     {
         [Required]
         [StringLength(35)]
-        public override string Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Range(typeof(decimal), "0", "100", ErrorMessage = "Tax must be a value between 0 and 100")]

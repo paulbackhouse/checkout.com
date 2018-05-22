@@ -21,9 +21,9 @@ namespace Checkout.Web.Controllers.Api.v1
         /// </summary>
         /// <param name="countryId">A countryId to request products for</param>
         /// <returns></returns>
-        [HttpGet("{countryId}")]
-        public IEnumerable<CountryDto> Get(short countryId)
-            => countryService.Get();
+        //[HttpGet("{countryId}")]
+        //public IEnumerable<CountryDto> Get(short countryId)
+        //    => countryService.Get();
 
     }
 }

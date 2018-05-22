@@ -5,6 +5,7 @@ namespace Checkout.Application
     using Caching;
     using Cart;
     using Location;
+    using Inventory;
 
     public static class ApplicationModule
     {
@@ -16,7 +17,10 @@ namespace Checkout.Application
             return services
                 .AddTransient<ICacheService, MemoryCacheService>()
                 .AddTransient<ICountryService, CountryService>()
-                .AddTransient<ICartService, CartService>();
+                .AddTransient<ICountryRepository, CountryRepository>()
+                .AddTransient<ICartService, CartService>()
+                .AddTransient<IProductService, ProductService>()
+                .AddTransient<IProductRepository, ProductRepository>();
         }
 
 
