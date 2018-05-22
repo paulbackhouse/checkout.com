@@ -27,8 +27,6 @@ namespace Checkout.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            ConfigureDependencyInjection(services);
-
             services.AddApplicationServices();
             services.AddMvc();
             services.AddApiVersioningAndDocs();
@@ -47,6 +45,7 @@ namespace Checkout.Web
             Configure(app, env);
 
             app.UseMiddleware(typeof(ApiErrorHandlingMiddleware));
+            app.UseStaticFiles();
             app.UseMvcRoutes();
             app.UseApiDocumentation();
 
@@ -70,14 +69,6 @@ namespace Checkout.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-        }
-
-        /// <summary>
-        /// configure services to be injected
-        /// </summary>
-        void ConfigureDependencyInjection(IServiceCollection services)
-        {
-            services.AddApplicationServices();
         }
     }
 }
