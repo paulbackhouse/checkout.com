@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace Checkout.Web.Controllers.Api.v1
 {
     using Location;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Countries REST Api. Endpoints for country specific data
@@ -32,8 +33,8 @@ namespace Checkout.Web.Controllers.Api.v1
         /// <param name="countryId">A given country Id to search for</param>
         /// <returns>An instance of a CountryDto, when found</returns>
         [HttpGet("{countryId}")]
-        public CountryDto Get(short countryId)
-            => countryService.Get(countryId);
+        public async Task<CountryDto> Get(short countryId)
+            => await countryService.GetAsync(countryId);
 
     }
 }

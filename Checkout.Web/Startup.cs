@@ -1,13 +1,16 @@
 using AutoMapper;
 using Checkout.Application;
+using Checkout.EntityFramework;
 using Checkout.Web.App.Extensions;
 using Checkout.Web.App.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Checkout.Web
 {
@@ -22,7 +25,7 @@ namespace Checkout.Web
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             ConfigureDependencyInjection(services);
 
@@ -31,6 +34,8 @@ namespace Checkout.Web
             services.AddApiVersioningAndDocs();
             services.AddMemoryCache();
             services.AddAutoMapper(typeof(ApplicationMappingProfile));
+
+            return services.AddDb();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +49,7 @@ namespace Checkout.Web
             app.UseMiddleware(typeof(ApiErrorHandlingMiddleware));
             app.UseMvcRoutes();
             app.UseApiDocumentation();
+
         }
 
 

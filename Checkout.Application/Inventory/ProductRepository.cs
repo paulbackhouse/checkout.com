@@ -6,56 +6,38 @@ using System.Linq;
 
 namespace Checkout.Inventory
 {
-    using Models;
+    using EntityFramework;
     using Interfaces;
     using Location;
+    using Microsoft.EntityFrameworkCore;
+    using Models;
+    using System.Threading.Tasks;
 
+    /// <summary>
+    /// Repository for CRUD product related queries
+    /// </summary>
     public class ProductRepository : IProductRepository, ITransientService
     {
-        private readonly IEnumerable<ProductEntity> items;
+        private readonly CheckoutContext context;
 
-        public ProductRepository(ICountryRepository countryRepository)
+        // TODO: replace with valid logic
+        public ProductRepository(CheckoutContext context)
         {
-            // TOD: replace with valid data repo
-            items = new List<ProductEntity>
-            {
-                Create(1, "Pencil", "100101", 1.99M, 1),
-                Create(1, "Pen", "100102", 2.99M, 1),
-                Create(1, "A4 Paper (50 pack)", "100103", 9.99M, 1),
-                Create(1, "A5 Paper (50 pack)", "100104", 8.99M, 1),
-                Create(1, "Notepad", "100105", 4.99M, 1),
-                Create(1, "Mouse", "100106", 7.99M, 1),
-                Create(1, "Keyboard", "100107", 11.99M, 1),
-                Create(1, "LCD Monitor", "100108", 129.99M, 1),
-            };
+            this.context = context;
         }
 
-
-        public IEnumerable<ProductEntity> Get(bool? isActive)
+        public async Task<IList<ProductEntity>> GetAsync(short countryId, bool? isActive)
         {
-            // TODO: replace with valid repo call
-            return items.Where(w => isActive == null || w.IsActive == (bool)isActive);
+            return await context
+                .Product
+                .Include(products => products.Country)
+                .Where(w => w.CountryId == countryId && (isActive == null || w.IsActive == (bool)isActive))
+                .ToListAsync();
         }
 
-        public ProductEntity Get(int id)
+        public async Task<ProductEntity> GetAsync(int id)
         {
-            return items.FirstOrDefault(f => f.Id == id);
-        }
-
-        // temp product entity crestor
-        ProductEntity Create(int id, string name, string code, decimal netPrice, short countryId)
-        {
-            return new ProductEntity
-            {
-                Id = id,
-                Name = name,
-                Code = code,
-                CountryId = countryId,
-                NetPrice = netPrice,
-                Created = DateTime.Now,
-                Updated = DateTime.Now,
-                IsActive = true
-            };
+            return await context.Product.FirstOrDefaultAsync(f => f.Id == id);
         }
 
     }

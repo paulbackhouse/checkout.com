@@ -3,35 +3,35 @@ using System.Linq;
 
 namespace Checkout.Location
 {
+    using EntityFramework;
     using Interfaces;
+    using Microsoft.EntityFrameworkCore;
     using Models;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Repository for CRUD country related queries
     /// </summary>
     public class CountryRepository : ICountryRepository, ITransientService
     {
-        private readonly IEnumerable<CountryEntity> items;
+        private readonly CheckoutContext context;
 
-        public CountryRepository()
+        public CountryRepository(CheckoutContext context)
         {
-            // TODO: replace with valid code here
-            //       i.e. real country data
-            items = new List<CountryEntity>()
-                    {
-                        new CountryEntity { Id = 1, Name = "Germany", Tax = 22.5M, IsDefault = true },
-                        new CountryEntity { Id = 2, Name = "United Kingdom", Tax = 17.5M }
-                    };
+            this.context = context;
         }
 
-        public IEnumerable<CountryEntity> Get(bool? isActive)
+        public async Task<IList<CountryEntity>> GetAsync(bool? isActive)
         {
-            return items.Where(w => isActive == null || w.IsActive == (bool)isActive);
+            return await context
+                .Country
+                .Where(w => isActive == null || w.IsActive == (bool)isActive)
+                .ToListAsync();
         }
 
-        public CountryEntity Get(short id)
+        public async Task<CountryEntity> GetAsync(short id)
         {
-            return items.FirstOrDefault(f => f.Id == id);
+            return await context.Country.FirstOrDefaultAsync(f => f.Id == id);
         }
     }
 }

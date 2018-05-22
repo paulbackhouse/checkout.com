@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Checkout.Inventory
 {
     using Location;
+    using System.Globalization;
 
     public class ProductDto : BaseDto<int>
     {
+
+        [Required]
+        [StringLength(10)]
+        public string Code { get; set; }
+    
         [Required]
         [StringLength(250)]
         public string ShortDescription { get; set; }
@@ -19,11 +23,30 @@ namespace Checkout.Inventory
         [Required]
         public CountryDto Country { get; set; }
 
+        public decimal Tax
+        {
+            get {
+                if (Country == null)
+                    throw new ArgumentNullException($"Country property was not present on Product Code: {Code}");
+
+                return Country.Tax;
+            }
+        }
+
         public decimal GrossPrice
         {
             get
             {
-                return NetPrice + (Country.Tax / 100);
+                return Math.Round(NetPrice + (NetPrice * Tax / 100), 2, MidpointRounding.AwayFromZero);
+            }
+        }
+
+
+        public string GrossPriceFormatted
+        {
+            get
+            {
+                return string.Format(new CultureInfo(Country.IsoCode), "{0:C}", GrossPrice);
             }
         }
     }

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Checkout.Models
 {
     using Audit;
 
+    [Table("Product")]
     public class ProductEntity : BaseEntity<int>, IActiveState
     {
         [Required]
@@ -25,5 +27,8 @@ namespace Checkout.Models
         public short CountryId { get; set; }
 
         public bool IsActive { get; set; }
+
+        [ForeignKey("CountryId")]
+        public virtual CountryEntity Country { get; set; }
     }
 }

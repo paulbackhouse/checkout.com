@@ -18,8 +18,6 @@ namespace Checkout.Application
         /// <summary>
         /// Creates a two way automap configuration
         /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <typeparam name="TDestination"></typeparam>
         void Create<TSource, TDestination>()
             where TSource : class
             where TDestination : class

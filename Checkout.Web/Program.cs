@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Checkout.Web.App.Extensions;
 
 namespace Checkout.Web
 {

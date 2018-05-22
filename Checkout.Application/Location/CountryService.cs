@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Checkout.Location
 {
     using Caching;
+    using Extensions;
     using Interfaces;
-    using Models;
+    using System.Threading.Tasks;
 
     public class CountryService : ICountryService, ITransientService 
     {
@@ -23,36 +23,19 @@ namespace Checkout.Location
         {
             return cacheService.Get<List<CountryDto>>(
                 "countries",
-                new Func<IList<CountryDto>>(() =>{
-                    // TODO: replace with real country source
-                    var result = countryRepository.Get(true);
-                    return Map(result);
+                new Func<IList<CountryDto>>(() => {
+                    // get countries
+                    var tsk = countryRepository.GetAsync(true);
+                    tsk.Wait();
+                    return tsk.Result.MapList<CountryDto>();
                 }));
         }
 
-        public CountryDto Get(short id)
+        public async Task<CountryDto> GetAsync(short id)
         {
-            return Get().FirstOrDefault(w => w.Id == id);
+            var item = await countryRepository.GetAsync(id);
+            return item.Map<CountryDto>();
         }
-
-        IList<CountryDto> Map(IEnumerable<CountryEntity> items)
-        {
-            var lst = new List<CountryDto>();
-
-            // TODO: replace with automapper
-            foreach (var item in items)
-            {
-                lst.Add(new CountryDto
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    IsDefault = item.IsDefault,
-                    Tax = item.Tax,
-                    IsActive = item.IsActive
-                });
-            }
-
-            return lst;
-        }
+       
     }
 }
