@@ -4,16 +4,17 @@ using System.Linq;
 
 namespace Checkout.Cart
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Globalization;
+    using Extensions;
 
+    /// <summary>
+    /// an object describing a logic cart and items currently associated
+    /// </summary>
     public class CartDto
     {
         public Guid Id { get; set; }
 
         public short CountryId { get; set; }
 
-        [Required]
         public string CountryIsoCode { get; set; }
 
         public IEnumerable<CartProductDto> Items { get; set; }
@@ -23,7 +24,7 @@ namespace Checkout.Cart
             {
                 if (Items != null)
                 {
-                    return Math.Round(Items.Sum(s => s.NetPrice), 2, MidpointRounding.AwayFromZero);
+                    return Items.Sum(s => s.NetPrice).Round();
                 }
 
                 return 0;
@@ -34,7 +35,7 @@ namespace Checkout.Cart
         {
             get
             {
-                return string.Format(new CultureInfo(CountryIsoCode), "{0:C}", TotalNetPrice);
+                return TotalNetPrice.AsCurrency(CountryIsoCode);
             }
         }
 
@@ -43,7 +44,7 @@ namespace Checkout.Cart
             {
                 if (Items != null)
                 {
-                    return Math.Round(Items.Sum(s => s.TotalTax), 2, MidpointRounding.AwayFromZero);
+                    return Items.Sum(s => s.TotalTax).Round();
                 }
 
                 return 0;
@@ -54,7 +55,7 @@ namespace Checkout.Cart
         {
             get
             {
-                return string.Format(new CultureInfo(CountryIsoCode), "{0:C}", TotalTax);
+                return TotalTax.AsCurrency(CountryIsoCode);
             }
         }
 
@@ -63,18 +64,18 @@ namespace Checkout.Cart
             {
                 if (Items != null)
                 {
-                    return Math.Round(Items.Sum(s => s.TotalGrossPrice), 2, MidpointRounding.AwayFromZero);
+                    return Items.Sum(s => s.TotalGrossPrice).Round();
                 }
 
                 return 0;
             }
         }
 
-        public string GrossPriceFormatted
+        public string TotalGrossPriceFormatted
         {
             get
             {
-                return string.Format(new CultureInfo(CountryIsoCode), "{0:C}", TotalGrossPrice);
+                return TotalGrossPrice.AsCurrency(CountryIsoCode);
             }
         }
 

@@ -19,12 +19,6 @@ namespace Checkout.Web.Controllers.Api.v1
             this.cartService = cartService;
         }
 
-
-        [HttpPost]
-        public async Task<CartDto> Create(short countryId)
-            => await cartService.CreateAsync(countryId);
-
-
         /// <summary>
         /// Gets a cart for a given Cart Id reference. 
         /// </summary>
@@ -37,11 +31,11 @@ namespace Checkout.Web.Controllers.Api.v1
         }
 
         /// <summary>
-        /// Add or updates a cart item. When Cart Id is not provided a new cart is created
+        /// Adds an item to a cart. A new cart is created if cartId is not specified on the item
         /// </summary>
         /// <param name="item">An object containing product information to add to a new or existing cart</param>
         [HttpPut]
-        public async Task<CartProductDto> Save(CartProductDto item)
+        public async Task<CartProductDto> Save(CartItemDto item)
             => await cartService.SaveAsync(item);
 
 

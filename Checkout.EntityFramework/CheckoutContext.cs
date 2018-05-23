@@ -18,7 +18,6 @@ namespace Checkout.EntityFramework
 
         // entity config
         public DbSet<CartEntity> Cart { get; set; }
-        public DbSet<CartProductEntity> CartProduct { get; set; }
         public DbSet<CountryEntity> Country { get; set; }
         public DbSet<ProductEntity> Product { get; set; }
 
@@ -28,8 +27,8 @@ namespace Checkout.EntityFramework
                 .HasIndex(i => i.Code).IsUnique(true);
 
             // composite key
-            builder.Entity<CartProductEntity>()
-                .HasKey(k => new { k.CartId, k.ProductId });
+            builder.Entity<CartEntity>()
+                .HasIndex(k => new { k.Id, k.CartId, k.ProductId }).IsUnique();
 
             base.OnModelCreating(builder);
         }

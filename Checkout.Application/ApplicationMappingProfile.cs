@@ -3,6 +3,7 @@
 namespace Checkout.Application
 {
     using Cart;
+    using Extensions;
     using Inventory;
     using Location;
     using Models;
@@ -11,11 +12,9 @@ namespace Checkout.Application
     {
         public ApplicationMappingProfile()
         {
-            Create<CartEntity, CartDto>();
-            Create<CartProductEntity, CartProductDto>();
-            Create<CountryEntity, CountryDto>();
             Create<CountryEntity, CountryDto>();
             Create<ProductEntity, ProductDto>();
+            CreateCartMapping();
         }
 
 
@@ -30,5 +29,17 @@ namespace Checkout.Application
             CreateMap<TDestination, TSource>();
         }
 
+        // Cart special projection mapping
+        void CreateCartMapping()
+        {
+            Create<CartEntity, CartDto>();
+            CreateMap<CartProductDto, CartEntity>();
+
+            // custom CartProductDto map (a Dto describing cart "product" logic)
+            CreateMap<CartEntity, CartProductDto>()
+                .ForMember(dest => dest.CountryIsoCode, opt => opt.MapFrom(src => src.Country.IsoCode))
+                .ForMember(dest => dest.NetPrice, opt => opt.MapFrom(src => src.Product.NetPrice))
+                .ForMember(dest => dest.TaxAmount, opt => opt.MapFrom(src => src.Product.NetPrice.AsTaxAmount(src.Country.Tax)));
+        }
     }
 }

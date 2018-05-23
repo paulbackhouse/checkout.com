@@ -9,6 +9,8 @@ namespace Checkout.Cart
     using EntityFramework;
     using Interfaces;
     using Models;
+    using System.Data.SqlClient;
+    using System.Linq;
 
     public class CartRepository : ICartRepository, ITransientService
     {
@@ -20,45 +22,41 @@ namespace Checkout.Cart
             this.context = context;
         }
 
-
-        public async Task<CartEntity> CreateAsync(CartEntity cart)
+        public async Task<IList<CartEntity>> GetByIdAysnc(Guid cartId)
         {
-            await context.Cart.AddAsync(cart);
-            await context.SaveChangesAsync();
-            return cart;
-        }
-
-        public async Task<CartEntity> GetByIdAysnc(Guid cartId)
-        {
-            return await context.Cart.FirstOrDefaultAsync(f => f.Id == cartId);
-        }
-
-        public async Task<IList<CartProductEntity>> GetProductsByIdAysnc(Guid cartId)
-        {
-            return await context.CartProduct.Include(i => i.Product).ToListAsync();
+            return await context.Cart.Where(w => w.CartId == cartId).ToListAsync();
         }
 
         public async Task RemoveAsync(Guid cartId)
         {
             // TODO: add soft delete logic here for beta
-            var sb = new StringBuilder();
-            sb.AppendFormat("delete from CartProduct where CartId = '{0}';", cartId);
-            sb.AppendFormat("delete from Cart where CartId = '{0}';", cartId);
+            //var sb = new StringBuilder();
 
-            await context.Database.ExecuteSqlCommandAsync(sb.ToString());
+            //sb.Append("delete from Cart where CartId = @cartId;");
+
+            //await context.Database.ExecuteSqlCommandAsync(sb.ToString(), cartIdparam);
+            context.Cart.Remove(new CartEntity { CartId = cartId });
             await context.SaveChangesAsync();
         }
 
-        public async Task<CartProductEntity> SaveAsync(CartProductEntity item)
+        public async Task RemoveAsync(long cartProductId)
+        {
+            context.Cart.Remove(new CartEntity { Id = cartProductId });
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<CartEntity> SaveAsync(CartEntity item)
         {
             if (item.Id > 0)
-                context.CartProduct.Update(item);
+                context.Cart.Update(item);
 
             else
-                await context.CartProduct.AddAsync(item);
+                await context.Cart.AddAsync(item);
 
             await context.SaveChangesAsync();
-            return item;
+
+            // get the record to ensure price reflects true values
+            return await context.Cart.FirstOrDefaultAsync(f => f.Id == item.Id);
         }
 
 

@@ -7,11 +7,6 @@ namespace Checkout.Cart
     {
 
         /// <summary>
-        /// Creates a new cart for a given country Id
-        /// </summary>
-        Task<CartDto> CreateAsync(short countryId);
-
-        /// <summary>
         /// Gets a cart by a given ID reference
         /// </summary>
         Task<CartDto> GetByIdAsync(Guid cartId);
@@ -24,6 +19,6 @@ namespace Checkout.Cart
         /// <summary>
         /// Saves an item to a cart, if cart Id is not present a new cart is created with the product added
         /// </summary>
-        Task<CartProductDto> SaveAsync(CartProductDto item);
+        Task<CartProductDto> SaveAsync(CartItemDto item);
     }
 }

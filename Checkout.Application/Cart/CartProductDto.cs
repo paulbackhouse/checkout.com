@@ -1,40 +1,50 @@
-﻿namespace Checkout.Cart
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Checkout.Cart
 {
-    using Inventory;
-    using System;
-    using System.ComponentModel.DataAnnotations;
+    using Extensions;
 
-    public class CartProductDto
+    /// <summary>
+    /// an oject describing a logical product as part of a cart
+    /// </summary>
+    public class CartProductDto : CartItemDto
     {
-        public long Id { get; set; }
-
-        public Guid CartId { get; set; }
-
-        public short CountryId { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "A minimum quantity of 1 must be added")]
-        public int ProductId { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "A min quantity of 1 must be entered")]
-        public int Qty { get; set; }
+        public string CountryIsoCode { get; set; }
 
         public decimal NetPrice { get; set; }
-
-        public decimal TaxAmount { get; set; }
 
         public decimal TotalNetPrice
         {
             get
             {
-                return Math.Round(Qty * NetPrice, 2, MidpointRounding.AwayFromZero);
+                return (Qty * NetPrice).Round();
             }
         }
+
+        public string TotalNetPriceFormatted
+        {
+            get
+            {
+                return TotalNetPrice.AsCurrency(CountryIsoCode);
+            }
+        }
+
+        public decimal TaxAmount { get; set; }
 
         public decimal TotalTax
         {
             get
             {
-                return Math.Round(Qty * TaxAmount, 2, MidpointRounding.AwayFromZero);
+                return (Qty * TaxAmount).Round();
+            }
+        }
+
+        public string TotalTaxFormatted
+        {
+            get
+            {
+                return TotalTax.AsCurrency(CountryIsoCode);
             }
         }
 
@@ -42,8 +52,17 @@
         {
             get
             {
-                return Math.Round(TotalNetPrice + TotalTax, MidpointRounding.AwayFromZero);
+                return (TotalNetPrice + TotalTax).Round();
             }
         }
+
+        public string TotalGrossPriceFormatted
+        {
+            get
+            {
+                return TotalGrossPrice.AsCurrency(CountryIsoCode);
+            }
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Checkout.Inventory
 {
     using Exceptions;
+    using Extensions;
     using Location;
     using System.Globalization;
 
@@ -36,11 +37,9 @@ namespace Checkout.Inventory
             get
             {
                 if (Country == null)
-                {
                     throw new CartException($"A country was not available for product code: {Code}");
-                }
 
-                return Math.Round((Country.Tax / 100) * NetPrice, 2, MidpointRounding.AwayFromZero);
+                return NetPrice.AsTaxAmount(Country.Tax);
             }
         }
 

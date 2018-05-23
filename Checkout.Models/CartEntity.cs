@@ -4,15 +4,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Checkout.Models
 {
-    [Table("Cart")]
-    public class CartEntity : BaseEntity<Guid>
+    public class CartEntity : BaseEntity<long>
     {
+        [Required]
+        public Guid CartId { get; set; } = Guid.NewGuid();
+
+        public int ProductId { get; set; }
+
         public short CountryId { get; set; }
 
-        [Required]
-        public string CountryIsoCode { get; set; }
+        [Range(1, int.MaxValue)]
+        public int Qty { get; set; }
+
+        [ForeignKey("ProductId")]
+        public virtual ProductEntity Product { get; set; }
 
         [ForeignKey("CountryId")]
-        public virtual CountryEntity Country { get; set; }
+        public virtual CountryEntity Country{ get; set; }
+
     }
 }
