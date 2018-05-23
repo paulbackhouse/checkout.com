@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Checkout.Models
 {
-    public class CartEntity : BaseEntity<long>
+    public class CartEntity : AuditCreatorModifier
     {
         [Required]
         public Guid CartId { get; set; } = Guid.NewGuid();

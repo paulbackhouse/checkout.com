@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Checkout.Cart
@@ -11,6 +10,7 @@ namespace Checkout.Cart
     using Models;
     using System.Data.SqlClient;
     using System.Linq;
+    using System.Text;
 
     public class CartRepository : ICartRepository, ITransientService
     {
@@ -22,43 +22,58 @@ namespace Checkout.Cart
             this.context = context;
         }
 
-        public async Task<IList<CartEntity>> GetByIdAysnc(Guid cartId)
+        public async Task<IList<CartEntity>> Get(Guid cartId)
         {
-            return await context.Cart.Where(w => w.CartId == cartId).ToListAsync();
+            return await context.Cart
+                                .Include(i => i.Product)
+                                .Include(i => i.Country)
+                                .Where(w => w.CartId == cartId).ToListAsync();
+        }
+
+        public async Task<CartEntity> Get(Guid cartId, int productId)
+        {
+            return await context.Cart
+                                .Include(i => i.Product)
+                                .Include(i => i.Country)
+                                .FirstOrDefaultAsync(f => f.CartId == cartId && f.ProductId == productId);
         }
 
         public async Task RemoveAsync(Guid cartId)
         {
             // TODO: add soft delete logic here for beta
-            //var sb = new StringBuilder();
 
-            //sb.Append("delete from Cart where CartId = @cartId;");
+            // in mem db, for prototype sufficient
+            var items = context.Cart.Where(w => w.CartId == cartId);
 
-            //await context.Database.ExecuteSqlCommandAsync(sb.ToString(), cartIdparam);
-            context.Cart.Remove(new CartEntity { CartId = cartId });
+            context.Cart.RemoveRange(items);
             await context.SaveChangesAsync();
         }
 
-        public async Task RemoveAsync(long cartProductId)
+        public async Task RemoveAsync(Guid cartId, int productId)
         {
-            context.Cart.Remove(new CartEntity { Id = cartProductId });
+            context.Cart.Remove(new CartEntity { CartId = cartId, ProductId = productId });
             await context.SaveChangesAsync();
         }
 
         public async Task<CartEntity> SaveAsync(CartEntity item)
         {
-            if (item.Id > 0)
-                context.Cart.Update(item);
+            // TODO: prototype only, EF core does not support AddOrUpdate extension until 2.1
+            var existing = await Get(item.CartId, item.ProductId);
 
+            if (existing != null)
+            {
+                existing.Qty = item.Qty;
+                context.Cart.Update(existing);
+            }
             else
+                // add new
                 await context.Cart.AddAsync(item);
 
             await context.SaveChangesAsync();
 
-            // get the record to ensure price reflects true values
-            return await context.Cart.FirstOrDefaultAsync(f => f.Id == item.Id);
+            // get the record to ensure price reflects true values with FK relationships in place
+            return await Get(item.CartId, item.ProductId);
         }
-
 
     }
 }

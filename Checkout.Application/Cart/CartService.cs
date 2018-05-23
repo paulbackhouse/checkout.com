@@ -8,29 +8,39 @@ namespace Checkout.Cart
     using Exceptions;
     using Extensions;
     using Interfaces;
+    using Inventory;
     using Location;
     using Models;
+    using System.Linq;
 
     public class CartService : ICartService, ITransientService
     {
-        // members
+        #region :: members / cstr 
+
         private readonly ILogger<CartService> logger;
         private readonly ICartRepository cartRepository;
         private readonly ICountryService countryService;
+        private readonly IProductRepository productRepository;
 
-
-        public CartService(ILogger<CartService> logger, ICartRepository cartRepository, ICountryService countryService)
+        public CartService(ILogger<CartService> logger, 
+            ICartRepository cartRepository, 
+            ICountryService countryService,
+            IProductRepository productRepository)
         {
             this.logger = logger;
             this.cartRepository = cartRepository;
             this.countryService = countryService;
+            this.productRepository = productRepository;
         }
+
+        #endregion
+
 
         public async Task<CartDto> GetByIdAsync(Guid cartId)
         {
             try
             {
-                var cart = await cartRepository.GetByIdAysnc(cartId);
+                var cart = await cartRepository.Get(cartId);
                 return Map(cart);
             }
             catch (Exception ex)
@@ -40,7 +50,7 @@ namespace Checkout.Cart
             }
         }
 
-        public async Task Remove(Guid cartId)
+        public async Task RemoveAsync(Guid cartId)
         {
             try
             {
@@ -54,12 +64,12 @@ namespace Checkout.Cart
             }
         }
 
-        public async Task Remove(Guid cartId, int productId)
+        public async Task RemoveAsync(Guid cartId, int productId)
         {
             try
             {
                 logger.LogDebug("Deleting item from cart {0} for product {1}", cartId, productId);
-                await cartRepository.RemoveAsync(cartId);
+                await cartRepository.RemoveAsync(cartId, productId);
             }
             catch (Exception ex)
             {
@@ -70,6 +80,8 @@ namespace Checkout.Cart
 
         public async Task<CartProductDto> SaveAsync(CartItemDto item)
         {
+            await ValidateProduct(item.CountryId, item.ProductId);
+
             try
             {
                 if (item.CartId.Equals(Guid.Empty))
@@ -90,11 +102,29 @@ namespace Checkout.Cart
             }
         }
 
+
+        // private
+
         CartDto Map(IEnumerable<CartEntity> cart)
         {
-            var map = cart.Map<CartDto>();
-            map.Items = cart.Map<IList<CartProductDto>>();
-            return map;
+            if (cart.Count() > 0)
+            {
+                var map = cart.First().Map<CartDto>();          // first item contains main cart detail
+                map.Items = cart.Map<IList<CartProductDto>>();  // create logic product view for cart
+                return map;
+            }
+
+            return null;
+        }
+
+        async Task ValidateProduct(short countryId, int productId)
+        {
+            var item = await productRepository.GetByIdAsync(productId);
+
+            if (item == null || item.CountryId != countryId)
+                throw new CartException("The product is not available for the country specified");
+
+            return;
         }
     }
 }

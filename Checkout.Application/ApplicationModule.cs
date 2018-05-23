@@ -19,6 +19,7 @@ namespace Checkout.Application
                 .AddTransient<ICountryService, CountryService>()
                 .AddTransient<ICountryRepository, CountryRepository>()
                 .AddTransient<ICartService, CartService>()
+                .AddTransient<ICartRepository, CartRepository>()
                 .AddTransient<IProductService, ProductService>()
                 .AddTransient<IProductRepository, ProductRepository>();
         }

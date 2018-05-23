@@ -32,6 +32,14 @@ namespace Checkout.Cart
 
         public decimal TaxAmount { get; set; }
 
+        public string TaxAmountFormatted
+        {
+            get
+            {
+                return TaxAmount.AsCurrency(CountryIsoCode);
+            }
+        }
+
         public decimal TotalTax
         {
             get

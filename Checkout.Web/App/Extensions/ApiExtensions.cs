@@ -22,9 +22,8 @@ namespace Checkout.Web.App.Extensions
 
         public static IServiceCollection AddApiVersioningAndDocs(this IServiceCollection services)
         {
-            // project xml file ref. contains xml generated comments for use in swagger
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            var baseXmlDir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+
 
             // set the versioning 
             return services.AddApiVersioning(options =>
@@ -37,7 +36,9 @@ namespace Checkout.Web.App.Extensions
             // set swagger api documentation generation 
             .AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1.0", new Info { Title = "Checkout.com Cart API", Version = "v1.0" });
+                // general doc info
+                options.SwaggerDoc("v1.0", GetInfo());
+
                 options.DocInclusionPredicate((docName, apiDesc) =>
                 {
                     var actionApiVersionModel = apiDesc.ActionDescriptor?.GetApiVersion();
@@ -54,9 +55,34 @@ namespace Checkout.Web.App.Extensions
                 });
 
                 options.OperationFilter<ApiVersionOperationFilter>();
-                options.IncludeXmlComments(xmlPath);
+
+                // add the xml comment files for documentation
+                foreach (var fi in baseXmlDir.EnumerateFiles("*.xml"))
+                {
+                    options.IncludeXmlComments(fi.FullName);
+                }
 
             });
+        }
+
+        private static Info GetInfo()
+        {
+            return new Info
+            {
+                Title = "Checkout.com Cart API",
+                Version = "v1.0",
+                Contact = GetContactInfo(),
+                Description = "Checkout.com cart prototype REST Api. Use version \"1.0\" where asked"
+            };
+        }
+
+        private static Contact GetContactInfo()
+        {
+            return new Contact
+            {
+                 Email = "paul.k.backhouse@gmail.com",
+                 Name = "Paul Backhouse"
+            };
         }
 
         public static IApplicationBuilder UseApiDocumentation(this IApplicationBuilder app)

@@ -11,7 +11,7 @@ namespace Checkout.Cart
     /// </summary>
     public class CartDto
     {
-        public Guid Id { get; set; }
+        public Guid CartId { get; set; }
 
         public short CountryId { get; set; }
 
@@ -24,7 +24,7 @@ namespace Checkout.Cart
             {
                 if (Items != null)
                 {
-                    return Items.Sum(s => s.NetPrice).Round();
+                    return Items.Sum(s => s.TotalNetPrice).Round();
                 }
 
                 return 0;

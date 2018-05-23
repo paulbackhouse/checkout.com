@@ -14,7 +14,12 @@ namespace Checkout.Cart
         /// <summary>
         /// ´Removes a cart and its associated cart items
         /// </summary>
-        Task Remove(Guid cartId);
+        Task RemoveAsync(Guid cartId);
+
+        /// <summary>
+        /// ´Removes product from a cart 
+        /// </summary>
+        Task RemoveAsync(Guid cartId, int productId);
 
         /// <summary>
         /// Saves an item to a cart, if cart Id is not present a new cart is created with the product added

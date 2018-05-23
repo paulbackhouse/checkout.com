@@ -3,6 +3,8 @@ using System.Globalization;
 
 namespace Checkout.Location
 {
+    using Extensions;
+
     public class CountryDto : BaseDto<short>
     {
         [Required]
@@ -30,7 +32,7 @@ namespace Checkout.Location
         {
             get
             {
-                return string.Format("{0:P2}", (Tax / 100));
+                return Tax.AsPercentage();
             }
         }
 

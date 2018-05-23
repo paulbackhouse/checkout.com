@@ -10,5 +10,9 @@ namespace Checkout.Extensions
             return string.Format(new CultureInfo(countryIsoCode), "{0:C}", value);
         }
 
+        public static string AsPercentage(this decimal value)
+        {
+            return string.Format("{0:P2}", (value / 100));
+        }
     }
 }

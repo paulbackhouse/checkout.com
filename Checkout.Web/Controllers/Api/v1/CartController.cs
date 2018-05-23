@@ -1,5 +1,4 @@
-﻿using Checkout.Web.App.Exceptions;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Web.Controllers.Api.v1
 {
@@ -42,11 +41,24 @@ namespace Checkout.Web.Controllers.Api.v1
         /// <summary>
         /// Removes and instance of a cart object and associated items
         /// </summary>
+        /// <param name="cartId">Id reference to delete all items and cart</param>
         [HttpDelete("{cartId}")]
         public async Task Remove(Guid cartId)
         {
             ValidateCartId(cartId);
-            await cartService.Remove(cartId);
+            await cartService.RemoveAsync(cartId);
+        }
+
+        /// <summary>
+        /// Removes a cart item for a given cartId and productId
+        /// </summary>
+        /// <param name="cartId">CartId reference to delete a product against</param>
+        /// <param name="productId">ProductId reference to delete from a given cartId reference</param>
+        [HttpDelete("{cartId}/{productId}")]
+        public async Task Remove(Guid cartId, int productId)
+        {
+            ValidateCartId(cartId);
+            await cartService.RemoveAsync(cartId, productId);
         }
 
         void ValidateCartId(Guid cartId)

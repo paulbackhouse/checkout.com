@@ -12,8 +12,8 @@ namespace Checkout.Application
     {
         public ApplicationMappingProfile()
         {
-            Create<CountryEntity, CountryDto>();
-            Create<ProductEntity, ProductDto>();
+            CreateMaps<CountryEntity, CountryDto>();
+            CreateMaps<ProductEntity, ProductDto>();
             CreateCartMapping();
         }
 
@@ -21,7 +21,7 @@ namespace Checkout.Application
         /// <summary>
         /// Creates a two way automap configuration
         /// </summary>
-        void Create<TSource, TDestination>()
+        void CreateMaps<TSource, TDestination>()
             where TSource : class
             where TDestination : class
         {
@@ -32,7 +32,8 @@ namespace Checkout.Application
         // Cart special projection mapping
         void CreateCartMapping()
         {
-            Create<CartEntity, CartDto>();
+            CreateMaps<CartEntity, CartDto>();
+            CreateMaps<CartEntity, CartItemDto>();
             CreateMap<CartProductDto, CartEntity>();
 
             // custom CartProductDto map (a Dto describing cart "product" logic)

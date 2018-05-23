@@ -28,7 +28,7 @@ namespace Checkout.EntityFramework
 
             // composite key
             builder.Entity<CartEntity>()
-                .HasIndex(k => new { k.Id, k.CartId, k.ProductId }).IsUnique();
+                .HasKey(k => new { k.CartId, k.ProductId });
 
             base.OnModelCreating(builder);
         }
