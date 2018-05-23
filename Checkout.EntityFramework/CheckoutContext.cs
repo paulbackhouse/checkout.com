@@ -18,11 +18,19 @@ namespace Checkout.EntityFramework
 
         // entity config
         public DbSet<CartEntity> Cart { get; set; }
+        public DbSet<CartProductEntity> CartProduct { get; set; }
         public DbSet<CountryEntity> Country { get; set; }
         public DbSet<ProductEntity> Product { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ProductEntity>()
+                .HasIndex(i => i.Code).IsUnique(true);
+
+            // composite key
+            builder.Entity<CartProductEntity>()
+                .HasKey(k => new { k.CartId, k.ProductId });
+
             base.OnModelCreating(builder);
         }
 

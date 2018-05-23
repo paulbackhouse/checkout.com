@@ -24,12 +24,12 @@ namespace Checkout.Location
         public async Task<IList<CountryEntity>> GetAsync(bool? isActive)
         {
             return await context
-                .Country
-                .Where(w => isActive == null || w.IsActive == (bool)isActive)
-                .ToListAsync();
+                    .Country
+                    .Where(w => isActive == null || w.IsActive == (bool)isActive)
+                    .ToListAsync();
         }
 
-        public async Task<CountryEntity> GetAsync(short id)
+        public async Task<CountryEntity> GetByIdAsync(short id)
         {
             return await context.Country.FirstOrDefaultAsync(f => f.Id == id);
         }

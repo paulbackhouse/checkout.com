@@ -13,10 +13,10 @@ namespace Checkout.Web.App.Extensions
 {
     /// <summary>
     /// Configuration of Swagger related
+    /// Ref: https://swagger.io/
+    /// Ref: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md
+    /// Ref: https://blog.jimismith.me/blogs/api-versioning-in-aspnet-core-with-nice-swagg
     /// </summary>
-    /// <see cref="https://swagger.io/"/>
-    /// <seealso cref="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md"/>
-    /// <seealso cref="https://blog.jimismith.me/blogs/api-versioning-in-aspnet-core-with-nice-swagg"/>
     public static class ApiExtensions
     {
 

@@ -21,7 +21,7 @@ namespace Checkout.Location
 
         public IList<CountryDto> Get()
         {
-            return cacheService.Get<List<CountryDto>>(
+            return cacheService.Get<IList<CountryDto>>(
                 "countries",
                 new Func<IList<CountryDto>>(() => {
                     // get countries
@@ -29,11 +29,12 @@ namespace Checkout.Location
                     tsk.Wait();
                     return tsk.Result.MapList<CountryDto>();
                 }));
+
         }
 
-        public async Task<CountryDto> GetAsync(short id)
+        public async Task<CountryDto> GetByIdAsync(short id)
         {
-            var item = await countryRepository.GetAsync(id);
+            var item = await countryRepository.GetByIdAsync(id);
             return item.Map<CountryDto>();
         }
        

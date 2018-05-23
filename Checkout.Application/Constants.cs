@@ -3,6 +3,7 @@
     public class Constants
     {
         public const char Delimiter = '|';
+        public const int DefaultPageSize = 15;
 
         public struct ContentTypes
         {

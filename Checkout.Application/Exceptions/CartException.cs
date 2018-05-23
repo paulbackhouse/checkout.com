@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Checkout.Application.Exceptions
+namespace Checkout.Exceptions
 {
     public class CartException : Exception
     {

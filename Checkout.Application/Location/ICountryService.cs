@@ -13,6 +13,6 @@ namespace Checkout.Location
         /// <summary>
         /// Gets a country by a given Id reference
         /// </summary>
-        Task<CountryDto> GetAsync(short id);
+        Task<CountryDto> GetByIdAsync(short id);
     }
 }

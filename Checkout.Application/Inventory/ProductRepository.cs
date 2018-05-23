@@ -1,17 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Checkout.Inventory
 {
     using EntityFramework;
+    using Extensions;
     using Interfaces;
-    using Location;
-    using Microsoft.EntityFrameworkCore;
     using Models;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Repository for CRUD product related queries
@@ -26,16 +23,17 @@ namespace Checkout.Inventory
             this.context = context;
         }
 
-        public async Task<IList<ProductEntity>> GetAsync(short countryId, bool? isActive)
+        public async Task<IList<ProductEntity>> GetAsync(PagerDto pager, short countryId, bool? isActive)
         {
             return await context
                 .Product
                 .Include(products => products.Country)
                 .Where(w => w.CountryId == countryId && (isActive == null || w.IsActive == (bool)isActive))
+                .Paged(pager)
                 .ToListAsync();
         }
 
-        public async Task<ProductEntity> GetAsync(int id)
+        public async Task<ProductEntity> GetByIdAsync(int id)
         {
             return await context.Product.FirstOrDefaultAsync(f => f.Id == id);
         }

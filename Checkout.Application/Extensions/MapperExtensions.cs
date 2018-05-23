@@ -23,5 +23,14 @@ namespace Checkout.Extensions
             return Mapper.Map<IList<TDestination>>(source);
         }
 
+        /// <summary>
+        /// Automapper wrapper. Maps a source object to destination based on mapping configurations
+        /// </summary>
+        public static PagedResultDto<TDestination> MapPaged<TDestination>(this IEnumerable<object> source, PagerDto pager)
+            where TDestination : class
+        {
+            return new PagedResultDto<TDestination>(Mapper.Map<IList<TDestination>>(source), pager);
+        }
+
     }
 }

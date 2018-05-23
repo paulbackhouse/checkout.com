@@ -10,30 +10,22 @@ namespace Checkout.Inventory
 
     public class ProductService : IProductService, ITransientService
     {
-        private readonly ICacheService cacheService;
         private readonly IProductRepository productRepository;
 
-        public ProductService(ICacheService cacheService, IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository)
         {
-            this.cacheService = cacheService;
             this.productRepository = productRepository;
         }
 
-        public IList<ProductDto> Get(short countryId)
+        public async Task<IList<ProductDto>> GetAsync(PagerDto pager, short countryId)
         {
-            return cacheService.Get<List<ProductDto>>(
-                $"products-country-{countryId}",
-                new Func<IList<ProductDto>>(() => {
-                    // get products
-                    var tsk = productRepository.GetAsync(countryId, true);
-                    tsk.Wait();
-                    return tsk.Result.MapList<ProductDto>();
-                }));
+            var items = await productRepository.GetAsync(pager, countryId, true);
+            return items.MapList<ProductDto>();
         }
 
-        public async Task<ProductDto> GetAsync(int id)
+        public async Task<ProductDto> GetByIdAsync(int id)
         {
-            var item = await productRepository.GetAsync(id);
+            var item = await productRepository.GetByIdAsync(id);
             return item.Map<ProductDto>();
         }
     }

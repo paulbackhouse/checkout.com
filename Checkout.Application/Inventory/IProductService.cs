@@ -6,14 +6,13 @@ namespace Checkout.Inventory
     public interface IProductService
     {
         /// <summary>
-        /// Gets a collection of active products by a given country Id reference
+        /// Gets a paged collection of active products by a given country Id reference
         /// </summary>
-        /// <param name="countryId">CountryId to return products for</param>
-        IList<ProductDto> Get(short countryId);
+        Task<IList<ProductDto>> GetAsync(PagerDto pager, short countryId);
 
         /// <summary>
         /// Gets a product by a given Id reference
         /// </summary>
-        Task<ProductDto> GetAsync(int id);
+        Task<ProductDto> GetByIdAsync(int id);
     }
 }

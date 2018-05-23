@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Checkout.Inventory
 {
+    using Exceptions;
     using Location;
     using System.Globalization;
 
@@ -20,33 +21,34 @@ namespace Checkout.Inventory
         [Required]
         public decimal NetPrice { get; set; }
 
+        public string NetPriceFormatted
+        {
+            get
+            {
+                return string.Format(new CultureInfo(Country.IsoCode), "{0:C}", NetPrice);
+            }
+        }
+
         [Required]
         public CountryDto Country { get; set; }
 
-        public decimal Tax
-        {
-            get {
+        public decimal TaxAmount {
+            get
+            {
                 if (Country == null)
-                    throw new ArgumentNullException($"Country property was not present on Product Code: {Code}");
+                {
+                    throw new CartException($"A country was not available for product code: {Code}");
+                }
 
-                return Country.Tax;
+                return Math.Round((Country.Tax / 100) * NetPrice, 2, MidpointRounding.AwayFromZero);
             }
         }
 
-        public decimal GrossPrice
+        public string TaxAmountFormatted
         {
             get
             {
-                return Math.Round(NetPrice + (NetPrice * Tax / 100), 2, MidpointRounding.AwayFromZero);
-            }
-        }
-
-
-        public string GrossPriceFormatted
-        {
-            get
-            {
-                return string.Format(new CultureInfo(Country.IsoCode), "{0:C}", GrossPrice);
+                return string.Format(new CultureInfo(Country.IsoCode), "{0:C}", TaxAmount);
             }
         }
     }

@@ -2,6 +2,7 @@
 
 namespace Checkout.Application
 {
+    using Cart;
     using Inventory;
     using Location;
     using Models;
@@ -10,8 +11,11 @@ namespace Checkout.Application
     {
         public ApplicationMappingProfile()
         {
-            Create<ProductEntity, ProductDto>();
+            Create<CartEntity, CartDto>();
+            Create<CartProductEntity, CartProductDto>();
             Create<CountryEntity, CountryDto>();
+            Create<CountryEntity, CountryDto>();
+            Create<ProductEntity, ProductDto>();
         }
 
 

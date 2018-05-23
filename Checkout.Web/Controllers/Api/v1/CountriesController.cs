@@ -34,7 +34,7 @@ namespace Checkout.Web.Controllers.Api.v1
         /// <returns>An instance of a CountryDto, when found</returns>
         [HttpGet("{countryId}")]
         public async Task<CountryDto> Get(short countryId)
-            => await countryService.GetAsync(countryId);
+            => await countryService.GetByIdAsync(countryId);
 
     }
 }

@@ -26,7 +26,6 @@ namespace Checkout.Location
         [Range(typeof(decimal), "0", "100", ErrorMessage = "Tax must be a value between 0 and 100")]
         public decimal Tax { get; set; }
 
-
         public string TaxFormatted
         {
             get

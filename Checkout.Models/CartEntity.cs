@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Checkout.Models
@@ -6,10 +7,12 @@ namespace Checkout.Models
     [Table("Cart")]
     public class CartEntity : BaseEntity<Guid>
     {
+        public short CountryId { get; set; }
 
-        // guest user logic
-        // when user authenticated, populate
-        public long? UserId { get; set; }
+        [Required]
+        public string CountryIsoCode { get; set; }
 
+        [ForeignKey("CountryId")]
+        public virtual CountryEntity Country { get; set; }
     }
 }

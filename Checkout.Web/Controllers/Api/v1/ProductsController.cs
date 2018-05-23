@@ -23,9 +23,11 @@ namespace Checkout.Web.Controllers.Api.v1
         /// Gets a collection of products available for a given countryId
         /// </summary>
         /// <param name="countryId">A countryId to request products for</param>
+        /// <param name="pageIndex">Zero based index querystring parameter requesting page. Default 0 (first page)</param>
+        /// <param name="pageSize">Page size querystring parameter required. Default 15</param>
         [HttpGet("{countryId}")]
-        public IEnumerable<ProductDto> Get(short countryId)
-            => productService.Get(countryId);
+        public async Task<IEnumerable<ProductDto>> Get(short countryId, [FromQuery]int pageIndex = 0, [FromQuery]int pageSize = Constants.DefaultPageSize)
+            => await productService.GetAsync(new PagerDto(pageIndex, pageSize), countryId);
 
         /// <summary>
         /// Gets a product by a given productId
@@ -34,7 +36,7 @@ namespace Checkout.Web.Controllers.Api.v1
         /// <returns>An instance of a ProductDto, when found</returns>
         [HttpGet("{productId}")]
         public async Task<ProductDto> Get(int productId)
-            => await productService.GetAsync(productId);
+            => await productService.GetByIdAsync(productId);
 
     }
 }
