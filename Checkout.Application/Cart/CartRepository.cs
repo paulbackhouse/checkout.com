@@ -22,7 +22,7 @@ namespace Checkout.Cart
             this.context = context;
         }
 
-        public async Task<IList<CartEntity>> Get(Guid cartId)
+        public async Task<IList<CartEntity>> GetAsync(Guid cartId)
         {
             return await context.Cart
                                 .Include(i => i.Product)
@@ -30,7 +30,7 @@ namespace Checkout.Cart
                                 .Where(w => w.CartId == cartId).ToListAsync();
         }
 
-        public async Task<CartEntity> Get(Guid cartId, int productId)
+        public async Task<CartEntity> GetAsync(Guid cartId, int productId)
         {
             return await context.Cart
                                 .Include(i => i.Product)
@@ -58,7 +58,7 @@ namespace Checkout.Cart
         public async Task<CartEntity> SaveAsync(CartEntity item)
         {
             // TODO: prototype only, EF core does not support AddOrUpdate extension until 2.1
-            var existing = await Get(item.CartId, item.ProductId);
+            var existing = await GetAsync(item.CartId, item.ProductId);
 
             if (existing != null)
             {
@@ -72,7 +72,7 @@ namespace Checkout.Cart
             await context.SaveChangesAsync();
 
             // get the record to ensure price reflects true values with FK relationships in place
-            return await Get(item.CartId, item.ProductId);
+            return await GetAsync(item.CartId, item.ProductId);
         }
 
     }

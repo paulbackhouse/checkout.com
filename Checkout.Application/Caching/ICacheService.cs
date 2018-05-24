@@ -22,7 +22,7 @@ namespace Checkout.Caching
         /// <summary>
         /// Sets data for a given cache key
         /// </summary>
-        void Set<T>(string cacheKey, T data) where T : class;
+        void Set<T>(string cacheKey, T data, DateTime expiryDate) where T : class;
 
     }
 }

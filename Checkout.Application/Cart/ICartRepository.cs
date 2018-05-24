@@ -12,7 +12,12 @@ namespace Checkout.Cart
         /// <summary>
         /// Gets a cart for a given Id reference
         /// </summary>
-        Task<IList<CartEntity>> Get(Guid cartId);
+        Task<IList<CartEntity>> GetAsync(Guid cartId);
+
+        /// <summary>
+        /// Gets an item from a cart by a given cart id and product id
+        /// </summary>
+        Task<CartEntity> GetAsync(Guid cartId, int productId);
 
         /// <summary>
         /// Removes an instance of a cart

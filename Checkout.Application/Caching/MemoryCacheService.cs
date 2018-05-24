@@ -20,21 +20,22 @@ namespace Checkout.Caching
         public T Get<T>(string cacheKey, DateTime expireDate, Delegate cacheRetrieveMethod, params object[] methodParameters) where T : class
         {
             var key = CreateCleanKey(cacheKey);
-  
+
             // if cached item found
-            if (memoryCache.TryGetValue<T>(key, out T result))
-                return result as T;
+            var existing = memoryCache.Get(key);
+
+            if (existing != null)
+                return existing as T;
 
             // currently not cached - store the method result
-            var methodParamsConcatinated = string.Join(Constants.Delimiter.ToString(), methodParameters);
             T data = RetrieveDelegateData<T>(cacheRetrieveMethod, methodParameters);
 
             if (data == null)
-                throw new ArgumentException($"Memory cache failed for Cache Key {cacheKey} as the result was null with parameters {methodParamsConcatinated}");
+                throw new InvalidOperationException($"Memory cache failed for Cache Key {cacheKey}");
 
-            logger.LogDebug("Caching for key: {0} by method parameters {1}", cacheKey, methodParamsConcatinated);
+            logger.LogDebug("Caching for key: {0}", cacheKey);
 
-            Set(key, data);
+            Set(key, data, expireDate);
             return data;                
         }
 
@@ -48,10 +49,10 @@ namespace Checkout.Caching
             memoryCache.Remove(CreateCleanKey(cacheKey));
         }
 
-        public void Set<T>(string cacheKey, T data) where T : class
+        public void Set<T>(string cacheKey, T data, DateTime expireDate) where T : class
         {
             logger.LogDebug("Caching for key: {0}", cacheKey);
-            memoryCache.Set(CreateCleanKey(cacheKey), data);
+            memoryCache.Set(CreateCleanKey(cacheKey), data, expireDate);
         }
 
         string CreateCleanKey(string cacheKey)

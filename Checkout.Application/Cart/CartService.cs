@@ -40,7 +40,7 @@ namespace Checkout.Cart
         {
             try
             {
-                var cart = await cartRepository.Get(cartId);
+                var cart = await cartRepository.GetAsync(cartId);
                 return Map(cart);
             }
             catch (Exception ex)

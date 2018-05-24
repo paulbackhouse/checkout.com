@@ -9,8 +9,8 @@
         /// <summary>
         /// Gets a paged result of products based on isactive filter (when supplied)
         /// </summary>
-        /// <param name="PagerDto">A paging object to return results against</param>
-        /// <param name="CountryId">Which country to get results for</param>
+        /// <param name="pager">A paging object to return results against</param>
+        /// <param name="countryId">Which country to get results for</param>
         /// <param name="isActive">Optional boolean param to indicate whether to retrieve active items by a given state. When empty returns all</param>
         Task<IList<ProductEntity>> GetAsync(PagerDto pager, short countryId, bool? isActive);
 
