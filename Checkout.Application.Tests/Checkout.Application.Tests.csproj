@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="Moq" Version="4.8.2" />
@@ -18,6 +19,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Checkout.Application\Checkout.Application.csproj" />
     <ProjectReference Include="..\Checkout.Models\Checkout.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

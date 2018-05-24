@@ -20,3 +20,4 @@ C:\Users\paulb\source\repos\checkout.com\Checkout.Application.Tests\bin\Debug\ne
 C:\Users\paulb\source\repos\checkout.com\Checkout.Application.Tests\bin\Debug\netcoreapp2.0\Checkout.Models.pdb
 C:\Users\paulb\source\repos\checkout.com\Checkout.Application.Tests\bin\Debug\netcoreapp2.0\Checkout.EntityFramework.pdb
 C:\Users\paulb\source\repos\checkout.com\Checkout.Application.Tests\obj\Debug\netcoreapp2.0\Checkout.Application.Tests.csproj.CopyComplete
+C:\Users\paulb\source\repos\checkout.com\Checkout.Application.Tests\bin\Debug\netcoreapp2.0\xunit.runner.json

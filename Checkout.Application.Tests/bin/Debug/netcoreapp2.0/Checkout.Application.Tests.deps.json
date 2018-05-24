@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v2.0": {
       "Checkout.Application.Tests/1.0.0": {
         "dependencies": {
+          "AutoMapper": "6.2.2",
           "Checkout.Application": "1.0.0",
           "Checkout.Models": "1.0.0",
           "Microsoft.EntityFrameworkCore.InMemory": "2.0.3",

@@ -6936,6 +6936,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "AutoMapper >= 6.2.2",
       "Checkout.Application >= 1.0.0",
       "Checkout.Models >= 1.0.0",
       "Microsoft.EntityFrameworkCore.InMemory >= 2.0.3",
@@ -6994,6 +6995,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[6.2.2, )"
+          },
           "Microsoft.EntityFrameworkCore.InMemory": {
             "target": "Package",
             "version": "[2.0.3, )"

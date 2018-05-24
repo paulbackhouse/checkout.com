@@ -15,7 +15,7 @@ namespace Checkout.Cart
 
     public class CartService : ICartService, ITransientService
     {
-        #region :: members / cstr 
+        #region M E M B E R S   /   C S T R
 
         private readonly ILogger<CartService> logger;
         private readonly ICartRepository cartRepository;

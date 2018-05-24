@@ -51,8 +51,14 @@ namespace Checkout.Cart
 
         public async Task RemoveAsync(Guid cartId, int productId)
         {
-            context.Cart.Remove(new CartEntity { CartId = cartId, ProductId = productId });
-            await context.SaveChangesAsync();
+            // TODO: for purposes of prototype this approach is acceptable
+            var match = await context.Cart.FirstOrDefaultAsync(f => f.CartId == cartId && f.ProductId == productId);
+
+            if (match != null)
+            {
+                context.Cart.Remove(match);
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task<CartEntity> SaveAsync(CartEntity item)

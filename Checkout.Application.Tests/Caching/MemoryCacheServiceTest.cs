@@ -1,12 +1,10 @@
 ﻿using Checkout.Caching;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using Moq;
 using Microsoft.Extensions.Logging;
+using Moq;
+using System;
 using System.Threading;
+using Xunit;
 
 namespace Checkout.Application.Tests.Caching
 {

@@ -40,6 +40,54 @@ namespace Checkout.Application.Tests.Cart
             Assert.Equal(result.Qty, (int)1);
         }
 
+        [Fact]
+        public async Task ItRemovesACart()
+        {
+            await repo.RemoveAsync(cartId);
+            Assert.True(context.Cart.Count(f => f.CartId == cartId) == 0);
+        }
+
+        [Fact]
+        public async Task ItRemovesACartItem()
+        {
+            await repo.RemoveAsync(cartId, 1);
+            Assert.Null(context
+                        .Cart
+                        .FirstOrDefault(f => f.CartId == cartId && f.ProductId == 1));
+        }
+
+        [Fact]
+        public async Task ItSavesNewItem()
+        {
+            await repo.SaveAsync(new Models.CartEntity
+            {
+                CartId = cartId,
+                ProductId = 2,
+                CountryId = 1,
+                Qty = 2
+            });
+
+            Assert.True(context.Cart.Count(c => c.CartId == cartId) == 2);
+            Assert.NotNull(context.Cart.FirstOrDefault(f => f.CartId == cartId && f.ProductId == 2));
+        }
+
+        [Fact]
+        public async Task ItUpdatesAnItem()
+        {
+            await repo.SaveAsync(new Models.CartEntity
+            {
+                CartId = cartId,
+                ProductId = 1,
+                CountryId = 1,
+                Qty = 5
+            });
+
+            var result = context.Cart.Where(f => f.CartId == cartId && f.ProductId == 1).ToList();
+
+            Assert.True(result.Count == 1);
+            Assert.True(result.First().Qty == 5);
+        }
+
         void PopulateData()
         {
             context.Cart.Add(new Models.CartEntity

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Checkout.Inventory
 {
-    using Caching;
     using Extensions;
     using Interfaces;
     using System.Threading.Tasks;
