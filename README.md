@@ -1,6 +1,4 @@
 <h1>Checkout.com Cart Api Test</h1>
-
-<hr />
 <p>
     <strong>Current Api Version:</strong> 1.0
     <br />
@@ -12,6 +10,13 @@
 
 *<strong>Note</strong> the sandbox makes use of SwaggerUI and currently there is a bug where by you have to click each request header twice to view more information about the request and expectations. TODO: Fix bug
 
+<h2>Prerequisties</h2>
+
+<p>
+    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run the solution, for more details see: https://www.visualstudio.com/
+</p>
+
+<h2>Solution</h2>
 <p>
     This test consists of the following projects:
 </p>
@@ -44,10 +49,17 @@
     </li>
     <li>
         <strong>Checkout.Web.Console</strong>
-        <br />Provides a real world example of how to use the CSharp client library code in Checkout.Web.Client;
+        <br />Provides a real world example of how to use the CSharp client library code in Checkout.Web.Client. The file Program.cs demonstrates how to use the Client Library and has examples of each endpoint usage.
     </li>
     <li>
         <strong>Checkout.Web.Tests</strong>
-        <br />Unit tests for Checkout.Web;
+        <br />Unit tests for Checkout.Web.
     </li>
 </ul>
+
+<h2>Setup</h2>
+
+<p>
+    Clone or download this repository to your local machine. Then click the file *Checkout.com.sln* file, this should open the solution correctly whereby you will be presented with an N-layer solution. Ensure you set the Startup project to Checkout.Web. Then, right click the solution icon and select BUILD.
+</p>
+
