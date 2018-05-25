@@ -1,0 +1,14 @@
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Console.deps.json
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Console.runtimeconfig.json
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Console.runtimeconfig.dev.json
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Console.dll
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Console.pdb
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Client.dll
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\bin\Release\netcoreapp2.0\Checkout.Web.Client.pdb
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.csprojAssemblyReference.cache
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.csproj.CoreCompileInputs.cache
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.AssemblyInfoInputs.cache
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.AssemblyInfo.cs
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.csproj.CopyComplete
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.dll
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Console\obj\Release\netcoreapp2.0\Checkout.Web.Console.pdb
