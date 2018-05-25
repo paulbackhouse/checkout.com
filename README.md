@@ -16,7 +16,7 @@ This repository currently integrates and deploys into an Azure environment where
 </p>
 
 <ul>
-    <li>Website: <a href="https://checkoutcartapi.azurewebsites.net/home" target="_blank">https://checkoutcartapi.azurewebsites.net/home</a></li>
+    <li>Website: <a href="https://checkoutcartapi.azurewebsites.net/home" target="_blank">https://checkoutcartapi.azurewebsites.net/home</a> where you will find client libraries available for download</li>
     <li>Sandbox: <a href="https://checkoutcartapi.azurewebsites.net/swagger" target="_blank">https://checkoutcartapi.azurewebsites.net/swagger</a></li>
 </ul>
 
