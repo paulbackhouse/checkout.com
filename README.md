@@ -13,7 +13,7 @@
 <h2>Prerequisties</h2>
 
 <p>
-    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run the solution, for more details see: https://www.visualstudio.com/
+    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: https://www.visualstudio.com/
 </p>
 
 <h2>Solution</h2>
