@@ -10,6 +10,17 @@
 
 *<strong>Note</strong> the sandbox makes use of SwaggerUI and currently there is a bug where by you have to click each request header twice to view more information about the request and expectations. TODO: Fix bug
 
+<h2>Continuous Integration &amp; Deployment</h2>
+<p>
+This repository currently integrates and deploys into an Azure environment where Production Urls are as follows: 
+</p>
+
+<ul>
+    <li>Website: https://checkoutcartapi.azurewebsites.net/home</li>
+    <li>Sandbox: https://checkoutcartapi.azurewebsites.net/swagger</li>
+</ul>
+
+
 <h2>Prerequisties</h2>
 
 <p>
