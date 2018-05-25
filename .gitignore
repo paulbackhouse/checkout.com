@@ -24,3 +24,5 @@
 /Checkout.Web.Tests/bin/Release/netcoreapp2.0/Checkout.Web.Tests.runtimeconfig.json
 /Checkout.Web.Tests/obj/Release/netcoreapp2.0/Checkout.Web.Tests.csproj.CopyComplete
 /Checkout.Web.Tests/obj/Release/netcoreapp2.0/Checkout.Web.Tests.csproj.FileListAbsolute.txt
+/Checkout.Application.Tests/bin/Debug/netcoreapp2.0/Checkout.Application.Tests.deps.json
+/Checkout.Application.Tests/bin/Debug/netcoreapp2.0/Checkout.Application.Tests.runtimeconfig.dev.json
