@@ -5,7 +5,7 @@
     <br />
   A <strong>Sandbox</strong><sup>*</sup> is available as part of the project where you can find information about the supported HTTP request types,
     the models along with a playground where you can try each request out with real data.
-  <br /><strong>Sandbox Url</strong> http://localhost:&lt;port&gt:/swagger
+  <br /><strong>Sandbox Url</strong> http://localhost:&lt;port&gt;/swagger
 </p>
 
 *<strong>Note</strong> the sandbox makes use of SwaggerUI and currently there is a bug where by you have to click each request header twice to view more information about the request and expectations. TODO: Fix bug
