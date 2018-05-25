@@ -1,16 +1,55 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
+
+
+<h1>Checkout.com Cart Api Test</h1>
+
+<hr />
+<p>
+    <strong>Current Api Version:</strong> 1.0
+    <br />
+    <br />
+    A <a href="/swagger" target="_blank"><strong>Sandbox</strong></a> is available where you can find information about the supported HTTP request types,
+    the models along with a playground where you can try each request out with real data.
+</p>
+
+<p>
+    This test consists of the following projects:
+</p>
+
 <ul>
-    <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-    <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-    <li><a href='https://webpack.github.io/'>Webpack</a> for building and bundling client-side resources</li>
-    <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+    <li>
+        <strong>Checkout.Application</strong>
+        <br />Contains business logic for services and repositories responsible for data operations, such as retrieving and saving data;
+    </li>
+    <li>
+        <strong>Checkout.Application.Tests</strong>
+        <br />Unit tests for Checkout.Application;
+    </li>
+    <li>
+        <strong>Checkout.EntityFramework</strong>
+        <br />Contains database configuration (such as model indexes or complex keys) and initialsation i.e. seed data. It is worth noting this prototype uses an <i>In Memory</i> representation of the database;
+    </li>
+    <li>
+        <strong>Checkout.Models</strong>
+        <br />Contains entity definitions which describe the structures in which data can be saved, i.e. tables;
+    </li>
+    <li>
+        <strong>Checkout.Web</strong>
+        <br />The core WebApi application, containing REST API controller Endpoints for countries, products and cart management;
+    </li>
+    <li>
+        <strong>Checkout.Web.Client</strong>
+        <br />Contains generated client library code, based off <a href="https://github.com/RSuter/NSwag" target="_blank">nswag.json</a> configuration file.
+        Examples are available in <i>CSharp</i> and <i>Typescript</i>;
+    </li>
+    <li>
+        <strong>Checkout.Web.Console</strong>
+        <br />Provides a real world example of how to use the CSharp client library code in Checkout.Web.Client;
+    </li>
+    <li>
+        <strong>Checkout.Web.Tests</strong>
+        <br />Unit tests for Checkout.Web;
+    </li>
 </ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-    <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-    <li><strong>Server-side prerendering</strong>. For faster initial loading and improved SEO, your Angular app is prerendered on the server. The resulting HTML is then transferred to the browser where a client-side copy of the app takes over.</li>
-    <li><strong>Webpack dev middleware</strong>. In development mode, there's no need to run the <code>webpack</code> build tool. Your client-side resources are dynamically built on demand. Updates are available as soon as you modify any file.</li>
-    <li><strong>Hot module replacement</strong>. In development mode, you don't even need to reload the page after making most changes. Within seconds of saving changes to files, your Angular app will be rebuilt and a new instance injected into the page.</li>
-    <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and the <code>webpack</code> build tool produces minified static CSS and JavaScript files.</li>
-</ul>
+
+
+

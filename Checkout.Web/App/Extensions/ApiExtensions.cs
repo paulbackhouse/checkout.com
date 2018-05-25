@@ -72,7 +72,7 @@ namespace Checkout.Web.App.Extensions
                 Title = "Checkout.com Cart API",
                 Version = "v1.0",
                 Contact = GetContactInfo(),
-                Description = "Checkout.com cart prototype REST Api. Use version \"1.0\" where asked"
+                Description = "Checkout.com cart prototype REST Api. Use version \"1.0\" OR \"1\" where asked"
             };
         }
 
