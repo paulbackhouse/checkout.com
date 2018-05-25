@@ -11,10 +11,19 @@ namespace Checkout.Cart
     /// </summary>
     public class CartDto
     {
+        /// <summary>
+        /// An Id of an exiting cart
+        /// </summary>
         public Guid CartId { get; set; }
 
+        /// <summary>
+        /// The country Id this cart relates to
+        /// </summary>
         public short CountryId { get; set; }
 
+        /// <summary>
+        /// The country ISO code the cart is valid for
+        /// </summary>
         public string CountryIsoCode { get; set; }
 
         public IEnumerable<CartProductDto> Items { get; set; }

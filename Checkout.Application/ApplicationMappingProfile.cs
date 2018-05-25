@@ -39,6 +39,8 @@ namespace Checkout.Application
             // custom CartProductDto map (a Dto describing cart "product" logic)
             CreateMap<CartEntity, CartProductDto>()
                 .ForMember(dest => dest.CountryIsoCode, opt => opt.MapFrom(src => src.Country.IsoCode))
+                .ForMember(dest => dest.ProductCode, opt => opt.MapFrom(src => src.Product.Code))
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
                 .ForMember(dest => dest.NetPrice, opt => opt.MapFrom(src => src.Product.NetPrice))
                 .ForMember(dest => dest.TaxAmount, opt => opt.MapFrom(src => src.Product.NetPrice.AsTaxAmount(src.Country.Tax)));
         }

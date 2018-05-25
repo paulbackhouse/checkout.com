@@ -16,15 +16,18 @@ namespace Checkout.Cart
         /// <summary>
         /// Country the cart relates to
         /// </summary>
+        [Required]
         [Range(1, short.MaxValue, ErrorMessage = "CountryId must be set")]
         public short CountryId { get; set; }
 
         /// <summary>
         /// Product to add/update
         /// </summary>
+        [Required]
         [Range(1, int.MaxValue, ErrorMessage = "A minimum quantity of 1 must be added")]
         public int ProductId { get; set; }
 
+        [Required]
         [Range(1, int.MaxValue, ErrorMessage = "A min quantity of 1 must be entered")]
         public int Qty { get; set; }
     }

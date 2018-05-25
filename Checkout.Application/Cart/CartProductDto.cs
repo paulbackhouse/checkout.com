@@ -10,6 +10,11 @@ namespace Checkout.Cart
     /// </summary>
     public class CartProductDto : CartItemDto
     {
+
+        public string ProductName { get; set; }
+
+        public string ProductCode { get; set; }
+
         public string CountryIsoCode { get; set; }
 
         public decimal NetPrice { get; set; }
