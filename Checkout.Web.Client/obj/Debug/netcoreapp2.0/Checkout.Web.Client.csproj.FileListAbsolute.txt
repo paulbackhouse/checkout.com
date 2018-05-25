@@ -6,3 +6,4 @@ C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Client\obj\Debug\netcoreap
 C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Client\obj\Debug\netcoreapp2.0\Checkout.Web.Client.AssemblyInfo.cs
 C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Client\obj\Debug\netcoreapp2.0\Checkout.Web.Client.dll
 C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Client\obj\Debug\netcoreapp2.0\Checkout.Web.Client.pdb
+C:\Users\paulb\source\repos\checkout.com\Checkout.Web.Client\obj\Debug\netcoreapp2.0\Checkout.Web.Client.csprojAssemblyReference.cache

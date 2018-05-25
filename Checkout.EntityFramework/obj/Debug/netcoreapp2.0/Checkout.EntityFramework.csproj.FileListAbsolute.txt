@@ -1,5 +1,6 @@
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\bin\Debug\netcoreapp2.0\Checkout.EntityFramework.deps.json
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\bin\Debug\netcoreapp2.0\Checkout.EntityFramework.dll
+C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\bin\Debug\netcoreapp2.0\Checkout.EntityFramework.pdb
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\bin\Debug\netcoreapp2.0\Checkout.Models.dll
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\bin\Debug\netcoreapp2.0\Checkout.Models.pdb
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netcoreapp2.0\Checkout.EntityFramework.csprojAssemblyReference.cache
@@ -7,6 +8,5 @@ C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netc
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netcoreapp2.0\Checkout.EntityFramework.AssemblyInfoInputs.cache
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netcoreapp2.0\Checkout.EntityFramework.AssemblyInfo.cs
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netcoreapp2.0\Checkout.EntityFramework.csproj.CopyComplete
-C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\bin\Debug\netcoreapp2.0\Checkout.EntityFramework.pdb
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netcoreapp2.0\Checkout.EntityFramework.dll
 C:\Users\paulb\source\repos\checkout.com\Checkout.EntityFramework\obj\Debug\netcoreapp2.0\Checkout.EntityFramework.pdb
