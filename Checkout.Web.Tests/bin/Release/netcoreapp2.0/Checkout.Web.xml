@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Checkout.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Checkout.Web.App.Extensions.ApiExtensions">
+            <summary>
+            Configuration of Swagger
+            Ref: https://swagger.io/
+            Ref: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md
+            Ref: https://blog.jimismith.me/blogs/api-versioning-in-aspnet-core-with-nice-swagg
+            </summary>
+        </member>
+        <member name="T:Checkout.Web.App.Middleware.ApiErrorHandlingMiddleware">
+            <summary>
+            middleware interceptor. When errors are thrown, intercepts, logs and returns error JSON
+            </summary>
+            <remarks>Designed for Api exception handling</remarks>
+        </member>
+        <member name="T:Checkout.Web.Controllers.Api.v1.CartController">
+            <summary>
+            Cart REST Api. Endpoints for cart specific logic
+            </summary>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.CartController.Get(System.Guid)">
+            <summary>
+            Gets a cart for a given Cart Id reference. 
+            </summary>
+            <param name="cartId">string. Unique identifier of a cart</param>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.CartController.Save(Checkout.Cart.CartItemDto)">
+            <summary>
+            Adds an item to a cart. A new cart is created if cartId is not specified on the item
+            </summary>
+            <param name="item">An object containing product information to add to a new or existing cart</param>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.CartController.Remove(System.Guid)">
+            <summary>
+            Removes and instance of a cart object and associated items
+            </summary>
+            <param name="cartId">Id reference to delete all items and cart</param>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.CartController.Remove(System.Guid,System.Int32)">
+            <summary>
+            Removes a cart item for a given cartId and productId
+            </summary>
+            <param name="cartId">CartId reference to delete a product against</param>
+            <param name="productId">ProductId reference to delete from a given cartId reference</param>
+        </member>
+        <member name="T:Checkout.Web.Controllers.Api.v1.CountriesController">
+            <summary>
+            Countries REST Api. Endpoints for country specific data
+            </summary>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.CountriesController.Get">
+            <summary>
+            Gets a collection of countries available for order process
+            </summary>
+            <returns>Collection of CountryDto</returns>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.CountriesController.Get(System.Int16)">
+            <summary>
+            Gets a country by a given countryId
+            </summary>
+            <param name="countryId">A given country Id to search for</param>
+            <returns>An instance of a CountryDto, when found</returns>
+        </member>
+        <member name="T:Checkout.Web.Controllers.Api.v1.ProductsController">
+            <summary>
+            Product REST Api. Endpoints for product specific data
+            </summary>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.ProductsController.Get(System.Int16,System.Int32,System.Int32)">
+            <summary>
+            Gets a collection of products available for a given countryId
+            </summary>
+            <param name="countryId">A countryId to request products for</param>
+            <param name="pageIndex">Zero based index querystring parameter requesting page. Default 0 (first page)</param>
+            <param name="pageSize">Page size querystring parameter required. Default 15</param>
+        </member>
+        <member name="M:Checkout.Web.Controllers.Api.v1.ProductsController.Get(System.Int32)">
+            <summary>
+            Gets a product by a given productId
+            </summary>
+            <param name="productId">Id to query for</param>
+            <returns>An instance of a ProductDto, when found</returns>
+        </member>
+        <member name="M:Checkout.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            configure based on environment
+            </summary>
+        </member>
+    </members>
+</doc>
