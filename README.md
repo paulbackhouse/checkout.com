@@ -10,10 +10,25 @@
 
 *<strong>Note</strong> the sandbox makes use of SwaggerUI and currently there is a bug where by you have to click each request header twice to view more information about the request and expectations. TODO: Fix bug
 
+<h2>Continuous Integration &amp; Deployment</h2>
+<p>
+This repository currently integrates and deploys into an Azure environment where Production Urls are as follows: 
+</p>
+
+<ul>
+    <li>Website: <a href="https://checkoutcartapi.azurewebsites.net/home" target="_blank">https://checkoutcartapi.azurewebsites.net/home</a></li>
+    <li>Sandbox: <a href="https://checkoutcartapi.azurewebsites.net/swagger" target="_blank">https://checkoutcartapi.azurewebsites.net/swagger</a></li>
+</ul>
+
+
 <h2>Prerequisties</h2>
 
 <p>
-    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: https://www.visualstudio.com/
+    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: <a href="https://www.visualstudio.com/" target="_blank">https://www.visualstudio.com/</a>
+</p>
+
+<p>
+Using the Task View window (Visual Studio > View > Task List) TODO tasks are noted as expected refactor/code update before beta.
 </p>
 
 <h2>Solution</h2>
@@ -60,6 +75,6 @@
 <h2>Setup</h2>
 
 <p>
-    Clone or download this repository to your local machine. Then click the file *Checkout.com.sln* file, this should open the solution correctly whereby you will be presented with an N-layer solution. Ensure you set the Startup project to Checkout.Web. Then, right click the solution icon and select BUILD.
+    Clone or download this repository to your local machine. Then click the file <strong>Checkout.com.sln</strong> file, this should open the solution correctly whereby you will be presented with an N-layer solution. Ensure you set the Startup project to Checkout.Web. Then, right click the solution icon and select BUILD.
 </p>
 
