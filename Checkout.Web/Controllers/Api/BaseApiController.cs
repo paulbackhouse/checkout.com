@@ -6,5 +6,6 @@ namespace Checkout.Web.Controllers.Api
     [Route("api/v{version:apiVersion}/[controller]")]
     public class BaseApiController : Controller
     {
+        // TODO: Add authentication for beta, likely customer auth specific
     }
 }
