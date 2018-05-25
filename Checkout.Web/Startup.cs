@@ -42,6 +42,7 @@ namespace Checkout.Web
 
             Configure(app, env);
 
+            // TODO: register middleware to handle model validation for Api requests
             app.UseMiddleware(typeof(ApiErrorHandlingMiddleware));
             app.UseStaticFiles();
             app.UseMvcRoutes();

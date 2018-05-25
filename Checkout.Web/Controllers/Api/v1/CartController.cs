@@ -7,6 +7,9 @@ namespace Checkout.Web.Controllers.Api.v1
     using System;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Cart REST Api. Endpoints for cart specific logic
+    /// </summary>
     [ApiVersion("1.0")]
     public class CartController : BaseApiController
     {

@@ -15,4 +15,3 @@ C:\Users\paulb\source\repos\checkout.com\Checkout.Models\obj\Debug\netcoreapp2.0
 C:\Users\paulb\source\repos\checkout.com\Checkout.Models\obj\Debug\netcoreapp2.0\Checkout.Models.AssemblyInfo.cs
 C:\Users\paulb\source\repos\checkout.com\Checkout.Models\obj\Debug\netcoreapp2.0\Checkout.Models.dll
 C:\Users\paulb\source\repos\checkout.com\Checkout.Models\obj\Debug\netcoreapp2.0\Checkout.Models.pdb
-C:\Users\paulb\source\repos\checkout.com\Checkout.Models\obj\Debug\netcoreapp2.0\Checkout.Models.csprojAssemblyReference.cache

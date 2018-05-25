@@ -6,7 +6,7 @@
     <members>
         <member name="T:Checkout.Web.App.Extensions.ApiExtensions">
             <summary>
-            Configuration of Swagger related
+            Configuration of Swagger
             Ref: https://swagger.io/
             Ref: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md
             Ref: https://blog.jimismith.me/blogs/api-versioning-in-aspnet-core-with-nice-swagg
@@ -17,6 +17,11 @@
             middleware interceptor. When errors are thrown, intercepts, logs and returns error JSON
             </summary>
             <remarks>Designed for Api exception handling</remarks>
+        </member>
+        <member name="T:Checkout.Web.Controllers.Api.v1.CartController">
+            <summary>
+            Cart REST Api. Endpoints for cart specific logic
+            </summary>
         </member>
         <member name="M:Checkout.Web.Controllers.Api.v1.CartController.Get(System.Guid)">
             <summary>

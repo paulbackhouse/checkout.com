@@ -7,12 +7,11 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace Checkout.Web.App.Extensions
 {
     /// <summary>
-    /// Configuration of Swagger related
+    /// Configuration of Swagger
     /// Ref: https://swagger.io/
     /// Ref: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md
     /// Ref: https://blog.jimismith.me/blogs/api-versioning-in-aspnet-core-with-nice-swagg
