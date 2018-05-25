@@ -1,6 +1,7 @@
 using AutoMapper;
 using Checkout.Application;
 using Checkout.Web.App.Extensions;
+using Checkout.Web.App.Filters;
 using Checkout.Web.App.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,11 +27,14 @@ namespace Checkout.Web
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationServices();
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.MaxModelValidationErrors = 50;
+                options.Filters.Add(typeof(ModelStateValidationFilterAttribute));
+            });
             services.AddApiVersioningAndDocs();
             services.AddMemoryCache();
             services.AddAutoMapper(typeof(ApplicationMappingProfile));
-
             return services.AddDb();
         }
 
@@ -42,7 +46,6 @@ namespace Checkout.Web
 
             Configure(app, env);
 
-            // TODO: register middleware to handle model validation for Api requests
             app.UseMiddleware(typeof(ApiErrorHandlingMiddleware));
             app.UseStaticFiles();
             app.UseMvcRoutes();
