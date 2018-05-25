@@ -16,15 +16,15 @@ This repository currently integrates and deploys into an Azure environment where
 </p>
 
 <ul>
-    <li>Website: https://checkoutcartapi.azurewebsites.net/home</li>
-    <li>Sandbox: https://checkoutcartapi.azurewebsites.net/swagger</li>
+    <li>Website: <a href="https://checkoutcartapi.azurewebsites.net/home" target="_blank">https://checkoutcartapi.azurewebsites.net/home</a></li>
+    <li>Sandbox: <a href="https://checkoutcartapi.azurewebsites.net/swagger" target="_blank">https://checkoutcartapi.azurewebsites.net/swagger</a></li>
 </ul>
 
 
 <h2>Prerequisties</h2>
 
 <p>
-    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: https://www.visualstudio.com/
+    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: <a href="https://www.visualstudio.com/" target="_blank">https://www.visualstudio.com/</a>
 </p>
 
 <p>
