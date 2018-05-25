@@ -37,6 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\sdks\java-client-generated.zip" />
+    <None Include="wwwroot\sdks\javascript-client-generated.zip" />
+    <None Include="wwwroot\sdks\python-client-generated.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Checkout.Application\Checkout.Application.csproj" />
     <ProjectReference Include="..\Checkout.EntityFramework\Checkout.EntityFramework.csproj" />
   </ItemGroup>
