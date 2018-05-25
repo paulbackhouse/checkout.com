@@ -26,3 +26,14 @@
 /Checkout.Web.Tests/obj/Release/netcoreapp2.0/Checkout.Web.Tests.csproj.FileListAbsolute.txt
 /Checkout.Application.Tests/bin/Debug/netcoreapp2.0/Checkout.Application.Tests.deps.json
 /Checkout.Application.Tests/bin/Debug/netcoreapp2.0/Checkout.Application.Tests.runtimeconfig.dev.json
+/Checkout.Application.Tests/obj/Release/netcoreapp2.0/Checkout.Application.Tests.AssemblyInfo.cs
+/Checkout.Application.Tests/obj/Release/netcoreapp2.0/Checkout.Application.Tests.Program.cs
+/Checkout.Application/bin/Release/netcoreapp2.0/Checkout.Application.deps.json
+/Checkout.Application/bin/Release/netcoreapp2.0/Newtonsoft.Json.xml
+/Checkout.EntityFramework/bin/Release/netcoreapp2.0/Checkout.EntityFramework.deps.json
+/Checkout.EntityFramework/obj/Release/netcoreapp2.0/Checkout.EntityFramework.AssemblyInfo.cs
+/Checkout.EntityFramework/obj/Release/netcoreapp2.0/Checkout.EntityFramework.csproj.CopyComplete
+/Checkout.EntityFramework/obj/Release/netcoreapp2.0/Checkout.EntityFramework.csproj.FileListAbsolute.txt
+/Checkout.Models/bin/Release/netcoreapp2.0/Checkout.Models.deps.json
+/Checkout.Models/obj/Release/netcoreapp2.0/Checkout.Models.AssemblyInfo.cs
+/Checkout.Models/obj/Release/netcoreapp2.0/Checkout.Models.csproj.FileListAbsolute.txt
