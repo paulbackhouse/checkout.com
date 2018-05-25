@@ -10,7 +10,7 @@
   <br /><strong>Sandbox Url</strong> http://localhost:<port>/swagger
 </p>
 
-* <strong>Note</strong> the sandbox makes use of SwaggerUI and currently there is a bug where by you have to click each request header twice to view more information about the request and expectations. TODO: Fix bug
+*<strong>Note</strong> the sandbox makes use of SwaggerUI and currently there is a bug where by you have to click each request header twice to view more information about the request and expectations. TODO: Fix bug
 
 <p>
     This test consists of the following projects:
