@@ -24,7 +24,7 @@ This repository currently integrates and deploys into an Azure environment where
 <h2>Prerequisties</h2>
 
 <p>
-    This solution is developed in Dot Net 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: <a href="https://www.visualstudio.com/" target="_blank">https://www.visualstudio.com/</a>
+    This solution is developed in Dot Net Core 2.0 and requires Visual Studio Community 2017 or higher to correctly open, view and run. For more details see: <a href="https://www.visualstudio.com/" target="_blank">https://www.visualstudio.com/</a>
 </p>
 
 <p>
