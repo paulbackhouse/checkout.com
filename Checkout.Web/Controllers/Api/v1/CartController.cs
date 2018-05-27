@@ -36,6 +36,17 @@ namespace Checkout.Web.Controllers.Api.v1
         /// Adds an item to a cart. A new cart is created if cartId is not specified on the item
         /// </summary>
         /// <param name="item">An object containing product information to add to a new or existing cart</param>
+        /// <example> 
+        /// TODO: review when supported
+        /// currently unsupported in Swashbuckle port although requested
+        /// Ref: https://github.com/domaindrivendev/Swashbuckle/pull/1091
+        /// {
+        ///     cartId: 00000000-0000-0000-0000-000000000000 (new cart created)
+        ///     productId: 1
+        ///     countryId: 1,
+        ///     qty: 1
+        /// }
+        /// </example>
         [HttpPut]
         public async Task<CartProductDto> Save(CartItemDto item)
             => await cartService.SaveAsync(item);
