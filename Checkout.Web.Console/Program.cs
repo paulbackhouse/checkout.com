@@ -20,12 +20,12 @@ namespace Checkout.Web.Console
 
             // change methods as needed on the client object
 
-            // get products
-            var products = client.ProductsByCountryIdGetAsync(1, 0, 15, "1.0").GetAwaiter().GetResult();
+            // get paged products
+            var pagedResult = client.ProductsByCountryIdGetAsync(1, 0, 15, "1.0").GetAwaiter().GetResult();
 
             System.Console.WriteLine("## P R O D U C T S ##");
 
-            foreach (var product in products)
+            foreach (var product in pagedResult.Items)
             {
                 System.Console.WriteLine($"Product Id {product.Id}, Code {product.Code}, Name {product.Name}, NetPrice: {product.NetPrice}");
             }
