@@ -23,13 +23,14 @@ namespace Checkout.Web.Tests.Controllers.v1
         [Fact]
         public async Task ItGetsPagedProducts()
         {
-            service.Setup(s => s.GetAsync(It.IsAny<PagerDto>(),It.IsAny<short>())).ReturnsAsync(new List<ProductDto>());
+            var mock = new PagedResultDto<ProductDto>(Mock.Of<List<ProductDto>>(), Mock.Of<PagerDto>());
+            service.Setup(s => s.GetAsync(It.IsAny<PagerDto>(),It.IsAny<short>())).ReturnsAsync(mock);
             var result = await ctrl.Get((short)1);
-            Assert.IsType<List<ProductDto>>(result);
+            Assert.IsType<PagedResultDto<ProductDto>>(result);
         }
 
         [Fact]
-        public async Task ItGetsCountryById()
+        public async Task ItGetsProductById()
         {
             service.Setup(s => s.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(new ProductDto());
             var result = await ctrl.Get(1);

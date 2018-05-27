@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Checkout.Inventory
+﻿namespace Checkout.Inventory
 {
     using Extensions;
     using Interfaces;
@@ -15,10 +13,10 @@ namespace Checkout.Inventory
             this.productRepository = productRepository;
         }
 
-        public async Task<IList<ProductDto>> GetAsync(PagerDto pager, short countryId)
+        public async Task<PagedResultDto<ProductDto>> GetAsync(PagerDto pager, short countryId)
         {
             var items = await productRepository.GetAsync(pager, countryId, true);
-            return items.MapList<ProductDto>();
+            return items.MapPaged<ProductDto>(pager);
         }
 
         public async Task<ProductDto> GetByIdAsync(int id)

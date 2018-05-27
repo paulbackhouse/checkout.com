@@ -4,7 +4,11 @@ using Xunit;
 namespace Checkout.Application.Tests.Extensions
 {
     using Checkout.Extensions;
+    using Checkout.Inventory;
     using Checkout.Location;
+    using Checkout.Models;
+    using Moq;
+    using System.Collections.Generic;
 
     public class MapperExtensionsTest : BaseTest
     {
@@ -45,6 +49,56 @@ namespace Checkout.Application.Tests.Extensions
 
         }
 
+        [Fact]
+        public void ItMapsToPagedResultFirstPage()
+        {
+
+            var pager = new PagerDto(0, 1);
+
+            var items = GetPaged(pager);
+            var result = items.MapPaged<ProductDto>(pager);
+
+            Assert.Equal(result.Pager.PageIndex, (int)0);
+            Assert.Equal(result.Pager.PageSize, (int)1);
+            Assert.Equal(result.Pager.Total, (int)5);
+            Assert.Equal(result.Pager.PageNumber, (int)1);
+            Assert.True(result.Pager.IsFirstPage);
+            Assert.False(result.Pager.IsLastPage);
+
+        }
+
+        [Fact]
+        public void ItMapsToPagedResultLastPage()
+        {
+
+            var pager = new PagerDto(4, 1);
+
+            var items = GetPaged(pager);
+            var result = items.MapPaged<ProductDto>(pager);
+
+            Assert.Equal(result.Pager.PageIndex, (int)4);
+            Assert.Equal(result.Pager.PageSize, (int)1);
+            Assert.Equal(result.Pager.Total, (int)5);
+            Assert.Equal(result.Pager.PageNumber, (int)5);
+            Assert.False(result.Pager.IsFirstPage);
+            Assert.True(result.Pager.IsLastPage);
+
+        }
+
+
+        IList<ProductEntity> GetPaged(PagerDto pager)
+        {
+            var lst = new List<ProductEntity>() {
+                new Mock<ProductEntity>().Object,
+                new Mock<ProductEntity>().Object,
+                new Mock<ProductEntity>().Object,
+                new Mock<ProductEntity>().Object,
+                new Mock<ProductEntity>().Object
+            }.AsQueryable();
+
+            return lst.Paged<ProductEntity>(pager).ToList();
+
+        }
 
     }
 }

@@ -27,7 +27,7 @@ namespace Checkout.Application.Tests.Inventory
 
             var results = await service.GetAsync(new PagerDto(), 1);
 
-            Assert.IsType<List<ProductDto>>(results);
+            Assert.IsType<PagedResultDto<ProductDto>>(results);
         }
 
         [Fact]
