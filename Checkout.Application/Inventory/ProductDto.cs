@@ -8,13 +8,18 @@ namespace Checkout.Inventory
     using Location;
     using System.Globalization;
 
+    /// <summary>
+    /// an object describing a product available as part of a cart
+    /// </summary>
     public class ProductDto : BaseDto<int>
     {
-
+        /// <summary>
+        /// Unique code for  product
+        /// </summary>
         [Required]
         [StringLength(10)]
         public string Code { get; set; }
-    
+
         [Required]
         [StringLength(250)]
         public string ShortDescription { get; set; }
@@ -30,9 +35,15 @@ namespace Checkout.Inventory
             }
         }
 
+        /// <summary>
+        /// Related country product is available for
+        /// </summary>
         [Required]
         public CountryDto Country { get; set; }
 
+        /// <summary>
+        /// Tax amount for product (based on country)
+        /// </summary>
         public decimal TaxAmount {
             get
             {

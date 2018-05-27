@@ -22,12 +22,18 @@ namespace Checkout.Cart
         public short CountryId { get; set; }
 
         /// <summary>
-        /// The country ISO code the cart is valid for
+        /// The country ISO language code for cart
         /// </summary>
         public string CountryIsoCode { get; set; }
 
+        /// <summary>
+        /// The products currently on a cart
+        /// </summary>
         public IEnumerable<CartProductDto> Items { get; set; }
 
+        /// <summary>
+        /// Total net price of all products (sum)
+        /// </summary>
         public decimal TotalNetPrice {
             get
             {
@@ -48,6 +54,9 @@ namespace Checkout.Cart
             }
         }
 
+        /// <summary>
+        /// Total tax of all products (sum)
+        /// </summary>
         public decimal TotalTax {
             get
             {
@@ -68,6 +77,9 @@ namespace Checkout.Cart
             }
         }
 
+        /// <summary>
+        /// Total gross price of all products (sum)
+        /// </summary>
         public decimal TotalGrossPrice {
             get
             {

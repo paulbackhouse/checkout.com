@@ -15,10 +15,19 @@ namespace Checkout.Cart
 
         public string ProductCode { get; set; }
 
+        /// <summary>
+        /// Country ISO language code
+        /// </summary>
         public string CountryIsoCode { get; set; }
 
+        /// <summary>
+        /// Singular price of product
+        /// </summary>
         public decimal NetPrice { get; set; }
 
+        /// <summary>
+        /// Total net price by product and quantity
+        /// </summary>
         public decimal TotalNetPrice
         {
             get
@@ -35,6 +44,9 @@ namespace Checkout.Cart
             }
         }
 
+        /// <summary>
+        /// Singular tax amount for product (by country)
+        /// </summary>
         public decimal TaxAmount { get; set; }
 
         public string TaxAmountFormatted
@@ -45,6 +57,9 @@ namespace Checkout.Cart
             }
         }
 
+        /// <summary>
+        /// Total tax by country, product and quantity
+        /// </summary>
         public decimal TotalTax
         {
             get
@@ -61,6 +76,9 @@ namespace Checkout.Cart
             }
         }
 
+        /// <summary>
+        /// Total gross price for product, the sum of total net price an total tax
+        /// </summary>
         public decimal TotalGrossPrice
         {
             get
