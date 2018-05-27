@@ -25,16 +25,16 @@ export class ApiClient {
         let url_ = this.baseUrl + "/api/v{version}/Cart/{cartId}";
         if (cartId === undefined || cartId === null)
             throw new Error("The parameter 'cartId' must be defined.");
-        url_ = url_.replace("{cartId}", encodeURIComponent("" + cartId)); 
+        url_ = url_.replace("{cartId}", encodeURIComponent("" + cartId));
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -49,14 +49,14 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? CartDto.fromJS(resultData200) : new CartDto();
-            return result200;
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? CartDto.fromJS(resultData200) : new CartDto();
+                return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<CartDto>(<any>null);
@@ -71,16 +71,16 @@ export class ApiClient {
         let url_ = this.baseUrl + "/api/v{version}/Cart/{cartId}";
         if (cartId === undefined || cartId === null)
             throw new Error("The parameter 'cartId' must be defined.");
-        url_ = url_.replace("{cartId}", encodeURIComponent("" + cartId)); 
+        url_ = url_.replace("{cartId}", encodeURIComponent("" + cartId));
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             }
         };
 
@@ -94,11 +94,11 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+                return;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<void>(<any>null);
@@ -106,31 +106,32 @@ export class ApiClient {
 
     /**
      * Adds an item to a cart. A new cart is created if cartId is not specified on the item
-     * @cartId (optional) Unique Id of an existing cart to update. When empty creates new cart
-     * @countryId (optional) Country the cart relates to
-     * @productId (optional) Product to add/update
-     * @qty (optional) 
+     * @cartId (optional) Unique Id of an existing cart to update. 
+    When empty a new cart is create (Guid.Empty = 00000000-0000-0000-0000-000000000000)
+     * @countryId (optional) Country the cart item relates to
+     * @productId (optional) Cart item (product) to add/update
+     * @qty (optional) the quantity to add/update for a given cart item (product)
      * @return Success
      */
     cartPut(cartId: string, countryId: number, productId: number, qty: number, version: string): Promise<CartProductDto> {
         let url_ = this.baseUrl + "/api/v{version}/Cart?";
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         if (cartId !== undefined)
-            url_ += "CartId=" + encodeURIComponent("" + cartId) + "&"; 
+            url_ += "CartId=" + encodeURIComponent("" + cartId) + "&";
         if (countryId !== undefined)
-            url_ += "CountryId=" + encodeURIComponent("" + countryId) + "&"; 
+            url_ += "CountryId=" + encodeURIComponent("" + countryId) + "&";
         if (productId !== undefined)
-            url_ += "ProductId=" + encodeURIComponent("" + productId) + "&"; 
+            url_ += "ProductId=" + encodeURIComponent("" + productId) + "&";
         if (qty !== undefined)
-            url_ += "Qty=" + encodeURIComponent("" + qty) + "&"; 
+            url_ += "Qty=" + encodeURIComponent("" + qty) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "PUT",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -145,14 +146,14 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? CartProductDto.fromJS(resultData200) : new CartProductDto();
-            return result200;
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? CartProductDto.fromJS(resultData200) : new CartProductDto();
+                return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<CartProductDto>(<any>null);
@@ -168,19 +169,19 @@ export class ApiClient {
         let url_ = this.baseUrl + "/api/v{version}/Cart/{cartId}/{productId}";
         if (cartId === undefined || cartId === null)
             throw new Error("The parameter 'cartId' must be defined.");
-        url_ = url_.replace("{cartId}", encodeURIComponent("" + cartId)); 
+        url_ = url_.replace("{cartId}", encodeURIComponent("" + cartId));
         if (productId === undefined || productId === null)
             throw new Error("The parameter 'productId' must be defined.");
-        url_ = url_.replace("{productId}", encodeURIComponent("" + productId)); 
+        url_ = url_.replace("{productId}", encodeURIComponent("" + productId));
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             }
         };
 
@@ -194,11 +195,11 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+                return;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<void>(<any>null);
@@ -212,13 +213,13 @@ export class ApiClient {
         let url_ = this.baseUrl + "/api/v{version}/Countries";
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -233,18 +234,18 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (resultData200 && resultData200.constructor === Array) {
-                result200 = [];
-                for (let item of resultData200)
-                    result200.push(CountryDto.fromJS(item));
-            }
-            return result200;
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                if (resultData200 && resultData200.constructor === Array) {
+                    result200 = [];
+                    for (let item of resultData200)
+                        result200.push(CountryDto.fromJS(item));
+                }
+                return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<CountryDto[]>(<any>null);
@@ -259,16 +260,16 @@ export class ApiClient {
         let url_ = this.baseUrl + "/api/v{version}/Countries/{countryId}";
         if (countryId === undefined || countryId === null)
             throw new Error("The parameter 'countryId' must be defined.");
-        url_ = url_.replace("{countryId}", encodeURIComponent("" + countryId)); 
+        url_ = url_.replace("{countryId}", encodeURIComponent("" + countryId));
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -283,14 +284,14 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? CountryDto.fromJS(resultData200) : new CountryDto();
-            return result200;
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? CountryDto.fromJS(resultData200) : new CountryDto();
+                return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<CountryDto>(<any>null);
@@ -298,51 +299,50 @@ export class ApiClient {
 
     /**
      * Gets a collection of products available for a given countryId
-     * @countryId A countryId to request products for
-     * @pageIndex (optional) Zero based index querystring parameter requesting page. Default 0 (first page)
-     * @pageSize (optional) Page size querystring parameter required. Default 15
+     * @countryId (optional) Required. A countryId to request products for
+     * @pageIndex (optional) Zero based index querystring parameter requesting page. i.e first page = 0
+     * @pageSize (optional) Page size querystring parameter required
      * @return Success
      */
-    productsByCountryIdGet(countryId: number, pageIndex: number, pageSize: number, version: string): Promise<PagedResultDtoOfProductDto> {
-        let url_ = this.baseUrl + "/api/v{version}/Products/{countryId}?";
-        if (countryId === undefined || countryId === null)
-            throw new Error("The parameter 'countryId' must be defined.");
-        url_ = url_.replace("{countryId}", encodeURIComponent("" + countryId)); 
+    productsGet(countryId: number, pageIndex: number, pageSize: number, version: string): Promise<PagedResultDtoOfProductDto> {
+        let url_ = this.baseUrl + "/api/v{version}/Products?";
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
+        if (countryId !== undefined)
+            url_ += "countryId=" + encodeURIComponent("" + countryId) + "&";
         if (pageIndex !== undefined)
-            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&"; 
+            url_ += "pageIndex=" + encodeURIComponent("" + pageIndex) + "&";
         if (pageSize !== undefined)
-            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&"; 
+            url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processProductsByCountryIdGet(_response);
+            return this.processProductsGet(_response);
         });
     }
 
-    protected processProductsByCountryIdGet(response: Response): Promise<PagedResultDtoOfProductDto> {
+    protected processProductsGet(response: Response): Promise<PagedResultDtoOfProductDto> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? PagedResultDtoOfProductDto.fromJS(resultData200) : new PagedResultDtoOfProductDto();
-            return result200;
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? PagedResultDtoOfProductDto.fromJS(resultData200) : new PagedResultDtoOfProductDto();
+                return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<PagedResultDtoOfProductDto>(<any>null);
@@ -357,16 +357,16 @@ export class ApiClient {
         let url_ = this.baseUrl + "/api/v{version}/Products/{productId}";
         if (productId === undefined || productId === null)
             throw new Error("The parameter 'productId' must be defined.");
-        url_ = url_.replace("{productId}", encodeURIComponent("" + productId)); 
+        url_ = url_.replace("{productId}", encodeURIComponent("" + productId));
         if (version === undefined || version === null)
             throw new Error("The parameter 'version' must be defined.");
-        url_ = url_.replace("{version}", encodeURIComponent("" + version)); 
+        url_ = url_.replace("{version}", encodeURIComponent("" + version));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = <RequestInit>{
             method: "GET",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -381,14 +381,14 @@ export class ApiClient {
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? ProductDto.fromJS(resultData200) : new ProductDto();
-            return result200;
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? ProductDto.fromJS(resultData200) : new ProductDto();
+                return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
         return Promise.resolve<ProductDto>(<any>null);
@@ -462,7 +462,7 @@ export class CartDto implements ICartDto {
         data["totalTaxFormatted"] = this.totalTaxFormatted;
         data["totalGrossPrice"] = this.totalGrossPrice;
         data["totalGrossPriceFormatted"] = this.totalGrossPriceFormatted;
-        return data; 
+        return data;
     }
 }
 
@@ -497,12 +497,14 @@ export class CartProductDto implements ICartProductDto {
     totalTaxFormatted?: string;
     totalGrossPrice?: number;
     totalGrossPriceFormatted?: string;
-    /** Unique Id of an existing cart to update. When empty creates new cart */
+    /** Unique Id of an existing cart to update. 
+When empty a new cart is create (Guid.Empty = 00000000-0000-0000-0000-000000000000) */
     cartId?: string;
-    /** Country the cart relates to */
+    /** Country the cart item relates to */
     countryId?: number;
-    /** Product to add/update */
+    /** Cart item (product) to add/update */
     productId?: number;
+    /** the quantity to add/update for a given cart item (product) */
     qty?: number;
 
     constructor(data?: ICartProductDto) {
@@ -560,7 +562,7 @@ export class CartProductDto implements ICartProductDto {
         data["countryId"] = this.countryId;
         data["productId"] = this.productId;
         data["qty"] = this.qty;
-        return data; 
+        return data;
     }
 }
 
@@ -578,12 +580,14 @@ export interface ICartProductDto {
     totalTaxFormatted?: string;
     totalGrossPrice?: number;
     totalGrossPriceFormatted?: string;
-    /** Unique Id of an existing cart to update. When empty creates new cart */
+    /** Unique Id of an existing cart to update. 
+When empty a new cart is create (Guid.Empty = 00000000-0000-0000-0000-000000000000) */
     cartId?: string;
-    /** Country the cart relates to */
+    /** Country the cart item relates to */
     countryId?: number;
-    /** Product to add/update */
+    /** Cart item (product) to add/update */
     productId?: number;
+    /** the quantity to add/update for a given cart item (product) */
     qty?: number;
 }
 
@@ -639,7 +643,7 @@ export class CountryDto implements ICountryDto {
         data["isDefault"] = this.isDefault;
         data["isActive"] = this.isActive;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
@@ -695,7 +699,7 @@ export class PagedResultDtoOfProductDto implements IPagedResultDtoOfProductDto {
                 data["items"].push(item.toJSON());
         }
         data["pager"] = this.pager ? this.pager.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -760,7 +764,7 @@ export class ProductDto implements IProductDto {
         data["taxAmountFormatted"] = this.taxAmountFormatted;
         data["id"] = this.id;
         data["name"] = this.name;
-        return data; 
+        return data;
     }
 }
 
@@ -823,7 +827,7 @@ export class PagerDto implements IPagerDto {
         data["pageSize"] = this.pageSize;
         data["isLastPage"] = this.isLastPage;
         data["isFirstPage"] = this.isFirstPage;
-        return data; 
+        return data;
     }
 }
 
@@ -840,10 +844,10 @@ export interface IPagerDto {
 
 export class SwaggerException extends Error {
     message: string;
-    status: number; 
-    response: string; 
+    status: number;
+    response: string;
     headers: { [key: string]: any; };
-    result: any; 
+    result: any;
 
     constructor(message: string, status: number, response: string, headers: { [key: string]: any; }, result: any) {
         super();
@@ -863,7 +867,7 @@ export class SwaggerException extends Error {
 }
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): any {
-    if(result !== null && result !== undefined)
+    if (result !== null && result !== undefined)
         throw result;
     else
         throw new SwaggerException(message, status, response, headers, null);

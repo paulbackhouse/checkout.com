@@ -206,9 +206,11 @@ namespace Checkout.Web.Client
         }
 
         /// <summary>Adds an item to a cart. A new cart is created if cartId is not specified on the item</summary>
-        /// <param name="cartId">Unique Id of an existing cart to update. When empty creates new cart</param>
-        /// <param name="countryId">Country the cart relates to</param>
-        /// <param name="productId">Product to add/update</param>
+        /// <param name="cartId">Unique Id of an existing cart to update. 
+        /// When empty a new cart is create (Guid.Empty = 00000000-0000-0000-0000-000000000000)</param>
+        /// <param name="countryId">Country the cart item relates to</param>
+        /// <param name="productId">Cart item (product) to add/update</param>
+        /// <param name="qty">the quantity to add/update for a given cart item (product)</param>
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<CartProductDto> CartPutAsync(System.Guid? cartId, int? countryId, int? productId, int? qty, string version)
@@ -217,9 +219,11 @@ namespace Checkout.Web.Client
         }
 
         /// <summary>Adds an item to a cart. A new cart is created if cartId is not specified on the item</summary>
-        /// <param name="cartId">Unique Id of an existing cart to update. When empty creates new cart</param>
-        /// <param name="countryId">Country the cart relates to</param>
-        /// <param name="productId">Product to add/update</param>
+        /// <param name="cartId">Unique Id of an existing cart to update. 
+        /// When empty a new cart is create (Guid.Empty = 00000000-0000-0000-0000-000000000000)</param>
+        /// <param name="countryId">Country the cart item relates to</param>
+        /// <param name="productId">Cart item (product) to add/update</param>
+        /// <param name="qty">the quantity to add/update for a given cart item (product)</param>
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -559,35 +563,32 @@ namespace Checkout.Web.Client
         }
 
         /// <summary>Gets a collection of products available for a given countryId</summary>
-        /// <param name="countryId">A countryId to request products for</param>
-        /// <param name="pageIndex">Zero based index querystring parameter requesting page. Default 0 (first page)</param>
-        /// <param name="pageSize">Page size querystring parameter required. Default 15</param>
+        /// <param name="countryId">Required. A countryId to request products for</param>
+        /// <param name="pageIndex">Zero based index querystring parameter requesting page. i.e first page = 0</param>
+        /// <param name="pageSize">Page size querystring parameter required</param>
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<PagedResultDtoOfProductDto> ProductsByCountryIdGetAsync(int countryId, int? pageIndex, int? pageSize, string version)
+        public System.Threading.Tasks.Task<PagedResultDtoOfProductDto> ProductsGetAsync(int? countryId, int? pageIndex, int? pageSize, string version)
         {
-            return ProductsByCountryIdGetAsync(countryId, pageIndex, pageSize, version, System.Threading.CancellationToken.None);
+            return ProductsGetAsync(countryId, pageIndex, pageSize, version, System.Threading.CancellationToken.None);
         }
 
         /// <summary>Gets a collection of products available for a given countryId</summary>
-        /// <param name="countryId">A countryId to request products for</param>
-        /// <param name="pageIndex">Zero based index querystring parameter requesting page. Default 0 (first page)</param>
-        /// <param name="pageSize">Page size querystring parameter required. Default 15</param>
+        /// <param name="countryId">Required. A countryId to request products for</param>
+        /// <param name="pageIndex">Zero based index querystring parameter requesting page. i.e first page = 0</param>
+        /// <param name="pageSize">Page size querystring parameter required</param>
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<PagedResultDtoOfProductDto> ProductsByCountryIdGetAsync(int countryId, int? pageIndex, int? pageSize, string version, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<PagedResultDtoOfProductDto> ProductsGetAsync(int? countryId, int? pageIndex, int? pageSize, string version, System.Threading.CancellationToken cancellationToken)
         {
-            if (countryId == null)
-                throw new System.ArgumentNullException("countryId");
-
             if (version == null)
                 throw new System.ArgumentNullException("version");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v{version}/Products/{countryId}?");
-            urlBuilder_.Replace("{countryId}", System.Uri.EscapeDataString(ConvertToString(countryId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v{version}/Products?");
             urlBuilder_.Replace("{version}", System.Uri.EscapeDataString(ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture)));
+            if (countryId != null) urlBuilder_.Append("countryId=").Append(System.Uri.EscapeDataString(ConvertToString(countryId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (pageIndex != null) urlBuilder_.Append("pageIndex=").Append(System.Uri.EscapeDataString(ConvertToString(pageIndex, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (pageSize != null) urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -869,20 +870,22 @@ namespace Checkout.Web.Client
         [Newtonsoft.Json.JsonProperty("totalGrossPriceFormatted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TotalGrossPriceFormatted { get; set; }
 
-        /// <summary>Unique Id of an existing cart to update. When empty creates new cart</summary>
+        /// <summary>Unique Id of an existing cart to update. 
+        /// When empty a new cart is create (Guid.Empty = 00000000-0000-0000-0000-000000000000)</summary>
         [Newtonsoft.Json.JsonProperty("cartId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid? CartId { get; set; }
 
-        /// <summary>Country the cart relates to</summary>
+        /// <summary>Country the cart item relates to</summary>
         [Newtonsoft.Json.JsonProperty("countryId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(1, 32767)]
         public int? CountryId { get; set; }
 
-        /// <summary>Product to add/update</summary>
+        /// <summary>Cart item (product) to add/update</summary>
         [Newtonsoft.Json.JsonProperty("productId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(1, 2147483647)]
         public int? ProductId { get; set; }
 
+        /// <summary>the quantity to add/update for a given cart item (product)</summary>
         [Newtonsoft.Json.JsonProperty("qty", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(1, 2147483647)]
         public int? Qty { get; set; }

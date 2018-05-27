@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Checkout.Web.Controllers.Api.v1
 {
+    using Checkout.Web.App.Exceptions;
     using Inventory;
     using System.Threading.Tasks;
 
@@ -22,13 +23,18 @@ namespace Checkout.Web.Controllers.Api.v1
         /// <summary>
         /// Gets a collection of products available for a given countryId
         /// </summary>
-        /// <param name="countryId">A countryId to request products for</param>
-        /// <param name="pageIndex">Zero based index querystring parameter requesting page. Default 0 (first page)</param>
-        /// <param name="pageSize">Page size querystring parameter required. Default 15</param>
+        /// <param name="countryId">Required. A countryId to request products for</param>
+        /// <param name="pageIndex">Zero based index querystring parameter requesting page. i.e first page = 0</param>
+        /// <param name="pageSize">Page size querystring parameter required</param>
         /// <returns>A paged result of products</returns>
-        [HttpGet("{countryId}")]
-        public async Task<PagedResultDto<ProductDto>> Get(short countryId, [FromQuery]int pageIndex = 0, [FromQuery]int pageSize = Constants.DefaultPageSize)
-            => await productService.GetAsync(new PagerDto(pageIndex, pageSize), countryId);
+        [HttpGet]
+        public async Task<PagedResultDto<ProductDto>> Get([FromQuery]short countryId, [FromQuery]int pageIndex = 0, [FromQuery]int pageSize = Constants.DefaultPageSize)
+        {
+            if (countryId == 0)
+                throw new ApiException("Country Id must be specified");
+
+            return await productService.GetAsync(new PagerDto(pageIndex, pageSize), countryId);
+        }
 
         /// <summary>
         /// Gets a product by a given productId

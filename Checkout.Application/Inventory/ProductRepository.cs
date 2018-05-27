@@ -35,7 +35,10 @@ namespace Checkout.Inventory
 
         public async Task<ProductEntity> GetByIdAsync(int id)
         {
-            return await context.Product.FirstOrDefaultAsync(f => f.Id == id);
+            return await context
+                        .Product
+                        .Include(products => products.Country)
+                        .FirstOrDefaultAsync(f => f.Id == id);
         }
 
     }
