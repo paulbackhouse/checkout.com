@@ -21,7 +21,7 @@ namespace Checkout.Web.Console
             // change methods as needed on the client object
 
             // get paged products
-            var pagedResult = client.ProductsGetAsync(1, 0, 15, "1.0").GetAwaiter().GetResult();
+            var pagedResult = client.ProductsGetAsync(2, 0, 15, "1.0").GetAwaiter().GetResult();
 
             System.Console.WriteLine("## P R O D U C T S ##");
 
