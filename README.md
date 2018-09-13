@@ -1,4 +1,4 @@
-<h1>Checkout.com Cart Api Test</h1>
+<h1>Simple Cart Api</h1>
 <p>
     <strong>Current Api Version:</strong> 1.0
     <br />
