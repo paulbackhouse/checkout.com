@@ -75,6 +75,8 @@ Using the Task View window (Visual Studio > View > Task List) TODO tasks are not
 <h2>Setup</h2>
 
 <p>
-    Clone or download this repository to your local machine. Then click the file <strong>Checkout.com.sln</strong> file, this should open the solution correctly whereby you will be presented with an N-layer solution. Ensure you set the Startup project to Checkout.Web. Then, right click the solution icon and select BUILD.
+    Clone or download this repository to your local machine. Then click the file <strong>Checkout.com.sln</strong> file, this should open the solution correctly whereby you will be presented with an N-layer solution. 
+    <br /><br/>
+    Ensure you set the Startup project to Checkout.Web. Restore all Nuget and npm packages, then, right click the solution icon and select BUILD.
 </p>
 
